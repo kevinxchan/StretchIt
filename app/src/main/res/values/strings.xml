@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Stretch It</string>
     <string name="action_settings">Settings</string>
+    <string name="routines">Routines</string>
+    <string name="get_started">Get started</string>
+    <string name="get_started_button">Get started</string>
 </resources>
