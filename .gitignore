@@ -1,0 +1,21 @@
+# init
+*.iml
+.gradle
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+
+# IntelliJ
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+out/
+
+# Gradle
+.idea/**/gradle.xml
+.idea/**/libraries
