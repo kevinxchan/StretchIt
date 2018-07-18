@@ -1,10 +1,13 @@
 package me.kevinxchan.kevinxchan.stretchit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +18,25 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Stretch It");
+
+        Button routinesBtn = (Button) findViewById(R.id.routinesBtn);
+        Button createRoutinesBtn = (Button) findViewById(R.id.createRoutineBtn);
+
+        routinesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent linkRoutines = new Intent(getApplicationContext(), RoutinesActivity.class);
+                startActivity(linkRoutines);
+            }
+        });
+
+        createRoutinesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent linkCreateRoutine = new Intent(getApplicationContext(), CreateRoutinesActivity.class);
+                startActivity(linkCreateRoutine);
+            }
+        });
     }
 
     @Override
