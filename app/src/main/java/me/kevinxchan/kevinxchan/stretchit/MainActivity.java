@@ -19,16 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Stretch It");
 
-        Button routinesBtn = (Button) findViewById(R.id.routinesBtn);
         Button createRoutinesBtn = (Button) findViewById(R.id.createRoutineBtn);
-
-        routinesBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent linkRoutines = new Intent(getApplicationContext(), RoutinesActivity.class);
-                startActivity(linkRoutines);
-            }
-        });
 
         createRoutinesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
