@@ -5,4 +5,6 @@
     <string name="get_started">Get started</string>
     <string name="get_started_button">Get started</string>
     <string name="create_a_routine">Create a routine</string>
+    <string name="routineName">Routine name:</string>
+    <string name="exercisesTitle">Exercises</string>
 </resources>
