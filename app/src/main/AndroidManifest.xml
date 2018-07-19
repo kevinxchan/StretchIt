@@ -30,6 +30,12 @@
         </activity>
         <activity android:name=".AddExercisesActivity">
         </activity>
+        <activity android:name=".CountdownActivity">
+        </activity>
+        <activity android:name=".RestActivity">
+        </activity>
+        <activity android:name=".ExerciseActivity">
+        </activity>
     </application>
 
 </manifest>
