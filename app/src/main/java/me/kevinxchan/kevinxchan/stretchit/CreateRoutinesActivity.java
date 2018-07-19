@@ -1,7 +1,10 @@
 package me.kevinxchan.kevinxchan.stretchit;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 
 public class CreateRoutinesActivity extends AppCompatActivity {
 
@@ -9,5 +12,14 @@ public class CreateRoutinesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_routines);
+
+        Button nextBtn = (Button) findViewById(R.id.nextBtn);
+        nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent nextActivity = new Intent(getApplicationContext(), AddExercisesActivity.class);
+                startActivity(nextActivity);
+            }
+        });
     }
 }

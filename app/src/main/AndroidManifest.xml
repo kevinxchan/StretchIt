@@ -28,6 +28,8 @@
         </activity>
         <activity android:name=".CreateRoutinesActivity">
         </activity>
+        <activity android:name=".AddExercisesActivity">
+        </activity>
     </application>
 
 </manifest>

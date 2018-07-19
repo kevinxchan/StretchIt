@@ -7,4 +7,7 @@
     <string name="new_routine">New Routine</string>
     <string name="routineName">Routine name:</string>
     <string name="exercisesTitle">Exercises</string>
+    <string name="next">Next</string>
+    <string name="addExercisesTitle">Add Exercises</string>
+    <string name="done">Done</string>
 </resources>
