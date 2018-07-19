@@ -14,6 +14,7 @@ public class AddExercisesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_exercises);
 
         Button doneBtn = (Button) findViewById(R.id.doneBtn);
+
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -21,5 +22,11 @@ public class AddExercisesActivity extends AppCompatActivity {
                 startActivity(doneIntent);
             }
         });
+//        addExerciseFAB.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent startAddContentIntent = new Intent(getApplicationContext(), AddContent.class);
+//            }
+//        });
     }
 }

@@ -10,4 +10,8 @@
     <string name="next">Next</string>
     <string name="addExercisesTitle">Add Exercises</string>
     <string name="done">Done</string>
+    <string name="manageRoutine">Manage Routine</string>
+    <string name="countdown">Countdown</string>
+    <string name="rest">Rest</string>
+    <string name="Exercise">Exercise</string>
 </resources>
