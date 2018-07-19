@@ -11,6 +11,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/floatingActionMenu"
+            app:menu_colorNormal="@color/colorPrimaryDark"
+            app:menu_colorPressed="@color/colorPrimary"
             app:menu_showShadow="true"
             app:menu_fab_label=""
             app:menu_openDirection="up"
@@ -23,7 +25,10 @@
         <com.github.clans.fab.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:fab_colorNormal="@color/colorPrimaryDark"
+                app:fab_colorPressed="@color/colorPrimary"
                 app:fab_label="@string/countdown"
+                app:fab_progress_backgroundColor="@android:color/transparent"
                 app:fab_size="mini"
                 android:id="@+id/floatingActionItemCountdown"
                 android:src="@drawable/timer"/>
@@ -31,6 +36,8 @@
         <com.github.clans.fab.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:fab_colorNormal="@color/colorPrimaryDark"
+                app:fab_colorPressed="@color/colorPrimary"
                 app:fab_label="@string/rest"
                 app:fab_size="mini"
                 android:id="@+id/floatingActionItemRest"
@@ -39,6 +46,8 @@
         <com.github.clans.fab.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:fab_colorNormal="@color/colorPrimaryDark"
+                app:fab_colorPressed="@color/colorPrimary"
                 app:fab_label="@string/Exercise"
                 app:fab_size="mini"
                 android:id="@+id/floatingActionItemExercise"
