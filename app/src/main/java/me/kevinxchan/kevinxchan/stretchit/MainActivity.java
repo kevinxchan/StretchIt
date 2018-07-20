@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import com.github.clans.fab.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Stretch It");
 
-        Button createRoutinesBtn = (Button) findViewById(R.id.createRoutineBtn);
+        FloatingActionButton createRoutinesBtn = (FloatingActionButton) findViewById(R.id.floatingActionItemAddRoutine);
 
         createRoutinesBtn.setOnClickListener(new View.OnClickListener() {
             @Override

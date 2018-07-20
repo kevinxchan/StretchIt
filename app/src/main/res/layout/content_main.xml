@@ -15,38 +15,59 @@
             android:id="@+id/routineTitleLayout" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintHorizontal_bias="0.0">
+            app:layout_constraintHorizontal_bias="0.0" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp" app:layout_constraintVertical_bias="0.0">
         <TextView
                 android:text="@string/routines"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" android:id="@+id/routinesTitleTextView" android:textSize="24sp"/>
     </LinearLayout>
-    <android.support.constraint.ConstraintLayout
-            android:layout_width="344dp"
-            android:layout_height="54dp" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="8dp" app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintHorizontal_bias="1.0" app:layout_constraintVertical_bias="0.981"
-            android:id="@+id/constraintLayout">
-
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/createRoutineBtn" app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"
-                app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
-                android:text="@string/new_routine"/>
-    </android.support.constraint.ConstraintLayout>
     <android.support.v7.widget.RecyclerView
-            android:layout_width="348dp"
-            android:layout_height="378dp"
+            android:layout_width="344dp"
+            android:layout_height="441dp"
             android:id="@+id/routinesRecyclerView"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginBottom="3dp" app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintVertical_bias="0.893"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
-            app:layout_constraintHorizontal_bias="0.0" android:layout_marginStart="8dp">
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/routineTitleLayout">
     </android.support.v7.widget.RecyclerView>
+    <com.github.clans.fab.FloatingActionMenu
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/floatingActionMenuMain"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintHorizontal_bias="1.0"
+            app:menu_colorNormal="@color/colorPrimaryDark"
+            app:menu_colorPressed="@color/colorPrimary"
+            app:menu_showShadow="true"
+            app:menu_backgroundColor="@android:color/transparent"
+            app:menu_fab_label="" android:layout_marginBottom="8dp" app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp" app:layout_constraintVertical_bias="1.0">
+
+        <com.github.clans.fab.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_colorNormal="@color/colorPrimaryDark"
+                app:fab_colorPressed="@color/colorPrimary"
+                app:fab_label="@string/new_routine"
+                app:fab_progress_backgroundColor="@android:color/transparent"
+                app:fab_size="mini"
+                android:id="@+id/floatingActionItemAddRoutine"
+                android:src="@drawable/routines"/>
+
+        <com.github.clans.fab.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fab_colorNormal="@color/colorPrimaryDark"
+                app:fab_colorPressed="@color/colorPrimary"
+                app:fab_label="@string/statistics"
+                app:fab_size="mini"
+                android:id="@+id/floatingActionItemViewStatistics"
+                android:src="@drawable/statistics"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
 </android.support.constraint.ConstraintLayout>
