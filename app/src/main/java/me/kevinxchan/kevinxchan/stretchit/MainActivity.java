@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         createRoutinesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent linkCreateRoutine = new Intent(getApplicationContext(), CreateRoutinesActivity.class);
+                Intent linkCreateRoutine = new Intent(getApplicationContext(), AddExercisesActivity.class);
                 startActivity(linkCreateRoutine);
             }
         });
