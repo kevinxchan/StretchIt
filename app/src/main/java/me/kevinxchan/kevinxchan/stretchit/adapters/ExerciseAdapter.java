@@ -26,8 +26,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ExerciseAdapter.ViewHolder viewHolder, int i) {
-//        viewHolder.exerciseName.setText(exercises.get(i));
-        // TODO: continue
+        viewHolder.exerciseName.setText(exercises.get(i).getName());
     }
 
     @Override

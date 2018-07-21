@@ -26,13 +26,17 @@
         </activity>
         <activity android:name=".RoutinesActivity">
         </activity>
-        <activity android:name=".AddExercisesActivity">
+        <activity
+                android:name=".AddExercisesActivity"
+                android:windowSoftInputMode="adjustPan">
         </activity>
         <activity android:name=".CountdownActivity">
         </activity>
         <activity android:name=".RestActivity">
         </activity>
         <activity android:name=".ExerciseActivity">
+        </activity>
+        <activity android:name=".RoutineNameActivity">
         </activity>
     </application>
 
