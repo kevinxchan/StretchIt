@@ -15,7 +15,7 @@ public class RoutineNameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_routine_name);
-        
+
         Button nextBtn = (Button) findViewById(R.id.nextBtn);
         routineNameEditText = (EditText) findViewById(R.id.routineNameEditText);
 

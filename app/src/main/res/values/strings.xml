@@ -6,10 +6,7 @@
     <string name="get_started_button">Get started</string>
     <string name="new_routine">New Routine</string>
     <string name="routineName">Routine name</string>
-    <string name="done">Done</string>
-    <string name="countdown">Countdown</string>
-    <string name="rest">Rest</string>
-    <string name="Exercise">Exercise</string>
     <string name="statistics">View statistics</string>
     <string name="next">Next</string>
+    <string name="activity_add_exercises_title">Manage exercises</string>
 </resources>
