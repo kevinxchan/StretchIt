@@ -29,16 +29,13 @@ public class AddExercisesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_exercises);
 
         exercises = new ArrayList<Exercise>();
-        recyclerViewExercises = findViewById(R.id.recyclerViewExercises);
+        recyclerViewExercises = initRecyclerView();
 
         for (int i = 0; i < 10; i++) {
             Exercise exercise = new Exercise(Category.COUNTDOWN, "foo");
             exercises.add(exercise);
         }
 
-        recyclerViewExercises.setLayoutManager(new LinearLayoutManager(null));
-        adapter = new ExerciseAdapter(exercises);
-        recyclerViewExercises.setAdapter(adapter);
         routineNameEditText = (EditText) findViewById(R.id.routineNameEditText);
         floatingActionButtonAddExercise = (FloatingActionButton) findViewById(R.id.floatingActionButtonAddExercise);
 
@@ -63,5 +60,13 @@ public class AddExercisesActivity extends AppCompatActivity {
                     floatingActionButtonAddExercise.hide();
             }
         });
+    }
+
+    private RecyclerView initRecyclerView() {
+        recyclerViewExercises = findViewById(R.id.recyclerViewExercises);
+        recyclerViewExercises.setLayoutManager(new LinearLayoutManager(null));
+        adapter = new ExerciseAdapter(exercises);
+        recyclerViewExercises.setAdapter(adapter);
+        return recyclerViewExercises;
     }
 }

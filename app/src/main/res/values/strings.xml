@@ -9,4 +9,11 @@
     <string name="statistics">View statistics</string>
     <string name="next">Next</string>
     <string name="activity_add_exercises_title">Manage exercises</string>
+    <string name="exercise_name_hint">Exercise name</string>
+    <string name="countdown_choice">Countdown</string>
+    <string name="exercise_choice">Exercise</string>
+    <string name="rest_choice">Rest</string>
+    <string name="category_of_activity">Category:</string>
+    <string name="exercise_name">Exercise name:</string>
+    <string name="duration">Duration:</string>
 </resources>
