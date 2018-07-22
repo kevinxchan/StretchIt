@@ -57,20 +57,42 @@
                   android:text="@string/duration"
                   android:textSize="18sp"
                   android:layout_marginBottom="18sp"/>
-        <!--<mobi.upod.timedurationpicker.TimeDurationPicker-->
-                <!--android:id="@+id/timeDurationInput"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_gravity="center_horizontal"-->
-                <!--/>-->
-        <!--<android.support.design.widget.FloatingActionButton-->
-                <!--android:id="@+id/actionButton"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_margin="48dp"-->
-                <!--android:visibility="invisible"/>-->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                      android:layout_marginBottom="24sp"
+                      android:orientation="horizontal"
+                      android:gravity="center">
+            <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/hoursInputText"
+                      android:hint="@string/double_zero_hint"
+                      android:textSize="24sp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="@string/h"
+                      android:textSize="24sp"/>
+
+            <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/minutesInputText"
+                      android:hint="@string/double_zero_hint"
+                      android:textSize="24sp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="@string/min"
+                      android:textSize="24sp"/>
+
+            <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:id="@+id/secondsInputText"
+                      android:text="@string/double_zero_hint"
+                      android:textSize="24sp"/>
+
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                      android:text="@string/s"
+                      android:textSize="24sp"/>
+        </LinearLayout>
+        <Button
+                android:text="@string/done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/doneBtn"
+                android:layout_gravity="center"/>
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

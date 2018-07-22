@@ -16,4 +16,9 @@
     <string name="category_of_activity">Category:</string>
     <string name="exercise_name">Exercise name:</string>
     <string name="duration">Duration:</string>
+    <string name="double_zero_hint">00</string>
+    <string name="h">h</string>
+    <string name="min">min</string>
+    <string name="s">s</string>
+    <string name="done">Done</string>
 </resources>
