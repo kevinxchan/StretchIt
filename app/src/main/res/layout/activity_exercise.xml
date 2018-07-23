@@ -34,24 +34,15 @@
                   android:text="@string/category_of_activity"
                   android:textSize="18sp"
                   android:layout_marginBottom="18sp"/>
-        <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:layout_marginBottom="24sp">
-            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:id="@+id/countdownChoice"
-                    android:text="@string/countdown_choice"
-                    android:textSize="12sp"/>
 
-            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:id="@+id/exerciseChoice"
-                    android:text="@string/exercise_choice"/>
-
-            <Button android:layout_width="wrap_content" android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:id="@+id/restChoice"
-                    android:text="@string/rest_choice"/>
-        </RelativeLayout>
+        <com.aigestudio.wheelpicker.WheelPicker
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                app:wheel_visible_item_count="2"
+                app:wheel_curved="true"
+                app:wheel_selected_item_text_color="@color/colorPrimaryDark"
+                android:id="@+id/exerciseCategoryWheelPicker"/>
 
         <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
                   android:text="@string/duration"
@@ -61,38 +52,55 @@
                       android:layout_marginBottom="24sp"
                       android:orientation="horizontal"
                       android:gravity="center">
-            <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:id="@+id/hoursInputText"
-                      android:hint="@string/double_zero_hint"
-                      android:textSize="24sp"/>
+
+            <com.aigestudio.wheelpicker.WheelPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:wheel_curved="true"
+                    app:wheel_selected_item_text_color="@color/colorPrimaryDark"
+                    app:wheel_visible_item_count="3"
+                    android:id="@+id/hoursWheelPicker"/>
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:text="@string/h"
+                      android:paddingStart="5dp"
+                      android:paddingEnd="5dp"
                       android:textSize="24sp"/>
 
-            <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:id="@+id/minutesInputText"
-                      android:hint="@string/double_zero_hint"
-                      android:textSize="24sp"/>
+            <com.aigestudio.wheelpicker.WheelPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:wheel_curved="true"
+                    app:wheel_visible_item_count="3"
+                    app:wheel_selected_item_text_color="@color/colorPrimaryDark"
+                    android:id="@+id/minutesWheelPicker"/>
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:text="@string/min"
+                      android:paddingStart="5dp"
+                      android:paddingEnd="5dp"
                       android:textSize="24sp"/>
 
-            <EditText android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:id="@+id/secondsInputText"
-                      android:text="@string/double_zero_hint"
-                      android:textSize="24sp"/>
+            <com.aigestudio.wheelpicker.WheelPicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:wheel_curved="true"
+                    app:wheel_visible_item_count="3"
+                    app:wheel_selected_item_text_color="@color/colorPrimaryDark"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:id="@+id/secondsWheelPicker"/>
 
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                       android:text="@string/s"
-                      android:textSize="24sp"/>
+                      android:textSize="24sp"
+                      android:paddingStart="5dp"
+                      android:paddingEnd="5dp"/>
         </LinearLayout>
         <Button
                 android:text="@string/done"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" android:id="@+id/doneBtn"
                 android:layout_gravity="center"/>
-
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
