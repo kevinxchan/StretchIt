@@ -5,7 +5,7 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity
 public class Routine {
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int routineID;
     private String name;
     private int numUsed;
