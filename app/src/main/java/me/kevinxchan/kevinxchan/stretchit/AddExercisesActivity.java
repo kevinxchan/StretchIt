@@ -16,12 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddExercisesActivity extends AppCompatActivity {
-    EditText routineNameEditText;
-    RecyclerView recyclerViewExercises;
-    RecyclerView.Adapter adapter;
-    FloatingActionButton floatingActionButtonAddExercise;
+    private EditText routineNameEditText;
+    private RecyclerView recyclerViewExercises;
+    private RecyclerView.Adapter adapter;
+    private FloatingActionButton floatingActionButtonAddExercise;
 
-    List<Exercise> exercises;
+    private List<Exercise> exercises;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

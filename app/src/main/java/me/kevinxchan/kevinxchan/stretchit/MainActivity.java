@@ -17,11 +17,11 @@ import me.kevinxchan.kevinxchan.stretchit.model.Routine;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    FloatingActionMenu floatingActionMenuMain;
-    FloatingActionButton createRoutinesBtn;
-    RecyclerView routinesRecyclerView;
-    RecyclerView.Adapter adapter;
-    List<Routine> routines;
+    private FloatingActionMenu floatingActionMenuMain;
+    private FloatingActionButton createRoutinesBtn;
+    private RecyclerView routinesRecyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<Routine> routines;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

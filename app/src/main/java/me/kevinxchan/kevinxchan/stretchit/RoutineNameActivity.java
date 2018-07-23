@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class RoutineNameActivity extends AppCompatActivity {
-    EditText routineNameEditText;
+    private EditText routineNameEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
