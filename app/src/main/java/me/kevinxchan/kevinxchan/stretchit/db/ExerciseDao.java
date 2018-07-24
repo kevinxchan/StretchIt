@@ -15,12 +15,12 @@ public interface ExerciseDao {
     LiveData<List<Exercise>> getAllExercises();
 
     @Query("SELECT * FROM exercise WHERE name = :name")
-    Exercise getExerciseByName();
+    Exercise getExerciseByName(String name);
 
     @Insert
     void insert(Exercise exercise);
 
-    @Query("UPDATE exercise SET category = newCategory WHERE name = :name")
+    @Query("UPDATE exercise SET category = :newCategory WHERE name = :name")
     void updateExerciseCategory(Category newCategory, String name);
 
     @Query("UPDATE exercise SET name = :newName WHERE name = :oldName")
