@@ -14,12 +14,15 @@ public interface RoutineDao {
     @Query("SELECT * FROM routine")
     LiveData<List<Routine>> getAllRoutines();
 
-    @Query("SELECT * FROM routine WHERE name = :name")
+    @Query("SELECT * FROM routine WHERE name = :name ORDER BY name ASC")
     Routine findRoutineByName(String name);
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
     void insert(Routine routine);
 
     @Query("UPDATE routine SET name = :setToName WHERE name = :originalName")
-    void updateRoutine(String setToName, String originalName);
+    void updateRoutineName(String setToName, String originalName);
+
+    @Query("UPDATE routine SET num_times_used = :newNumTimesUsed WHERE name = :name")
+    void updateRoutineTimesUsed(int newNumTimesUsed, String name);
 }
