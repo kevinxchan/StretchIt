@@ -1,16 +1,27 @@
 package me.kevinxchan.kevinxchan.stretchit.model;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.*;
+import android.support.annotation.NonNull;
 
-@Entity
+@Entity(tableName = "exercise",
+        foreignKeys = @ForeignKey(entity = Routine.class,
+                parentColumns = "rid",
+                childColumns = "routineId",
+                onDelete = ForeignKey.CASCADE),
+        indices = {@Index(value = "name", unique = true)})
 public class Exercise {
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "eid")
     private int exerciseID;
+
+    @ColumnInfo(name = "category")
     private Category category;
+
+    @ColumnInfo(name = "name")
+    @NonNull
     private String name;
 
-    public Exercise(Category category, String name) {
+    public Exercise(Category category, @NonNull String name) {
         this.category = category;
         this.name = name;
     }
