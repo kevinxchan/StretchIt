@@ -14,6 +14,7 @@ import com.github.clans.fab.FloatingActionMenu;
 import me.kevinxchan.kevinxchan.stretchit.adapters.RoutineAdapter;
 import me.kevinxchan.kevinxchan.stretchit.model.Routine;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,7 +34,13 @@ public class MainActivity extends AppCompatActivity {
 
         floatingActionMenuMain = (FloatingActionMenu) findViewById(R.id.floatingActionMenuMain);
         createRoutinesBtn = (FloatingActionButton) findViewById(R.id.floatingActionItemAddRoutine);
+        routines = new ArrayList<>();
         routinesRecyclerView = initRecyclerView();
+
+        for (int i = 0; i < 10; i++) {
+            Routine routine = new Routine("Foo");
+            routines.add(routine);
+        }
 
         createRoutinesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
