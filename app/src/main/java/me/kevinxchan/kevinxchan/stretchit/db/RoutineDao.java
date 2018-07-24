@@ -25,4 +25,7 @@ public interface RoutineDao {
 
     @Query("UPDATE routine SET num_times_used = :newNumTimesUsed WHERE name = :name")
     void updateRoutineTimesUsed(int newNumTimesUsed, String name);
+
+    @Query("DELETE FROM routine WHERE name = :name")
+    void deleteByName(String name);
 }

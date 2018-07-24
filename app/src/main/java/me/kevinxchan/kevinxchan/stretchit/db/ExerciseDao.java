@@ -25,4 +25,7 @@ public interface ExerciseDao {
 
     @Query("UPDATE exercise SET name = :newName WHERE name = :oldName")
     void updateExerciseName(String newName, String oldName);
+
+    @Query("DELETE FROM exercise WHERE name = :name")
+    void deleteByName(String name);
 }
