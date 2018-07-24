@@ -26,6 +26,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHold
     @Override
     public void onBindViewHolder(RoutineAdapter.ViewHolder viewHolder, int i) {
         viewHolder.routineName.setText(routines.get(i).getName());
+        viewHolder.numTimesUsed.setText("Times used: " + routines.get(i).getNumTimesUsed());
     }
 
     @Override
@@ -35,10 +36,12 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView routineName;
+        public TextView numTimesUsed;
 
         public ViewHolder(View itemView) {
             super(itemView);
             routineName = (TextView) itemView.findViewById(R.id.routineName);
+            numTimesUsed = (TextView) itemView.findViewById(R.id.numTimesUsed);
         }
     }
 }

@@ -1,5 +1,6 @@
 package me.kevinxchan.kevinxchan.stretchit.model;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
@@ -7,16 +8,24 @@ import android.arch.persistence.room.PrimaryKey;
 public class Routine {
     @PrimaryKey(autoGenerate = true)
     private int routineID;
+
+    @ColumnInfo(name = "name")
     private String name;
-    private int numUsed;
+
+    @ColumnInfo(name = "num_times_used")
+    private int numTimesUsed;
 
     public Routine(String name) {
         this.name = name;
-        this.numUsed = 0;
+        this.numTimesUsed = 0;
     }
 
     public int getRoutineID() {
         return routineID;
+    }
+
+    public void setRoutineID(int routineID) {
+        this.routineID = routineID;
     }
 
     public void setName(String name) {
@@ -27,11 +36,11 @@ public class Routine {
         return name;
     }
 
-    public int getNumUsed() {
-        return numUsed;
+    public int getNumTimesUsed() {
+        return numTimesUsed;
     }
 
-    public void setNumUsed(int numUsed) {
-        this.numUsed = numUsed;
+    public void setNumTimesUsed(int numUsed) {
+        this.numTimesUsed = numUsed;
     }
 }
