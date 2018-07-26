@@ -4,9 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import me.kevinxchan.kevinxchan.stretchit.db.AppDatabase;
+import me.kevinxchan.kevinxchan.stretchit.db.RoutineDao;
+import me.kevinxchan.kevinxchan.stretchit.model.Routine;
 
 public class RoutineNameActivity extends AppCompatActivity {
     private EditText routineNameEditText;
@@ -22,18 +26,35 @@ public class RoutineNameActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (hasBeenFilled(routineNameEditText)) {
+                String routineName = routineNameEditText.getText().toString();
+                if (!hasBeenFilled(routineName))
+                    routineNameEditText.setError("Routine name is required!");
+
+                if (hasBeenFilled(routineName) && notSameName(routineName)) {
+                    saveRoutine(routineNameEditText);
                     Intent nextIntent = new Intent(getApplicationContext(), AddExercisesActivity.class);
                     startActivity(nextIntent);
                 } else {
-                    routineNameEditText.setError("Routine name is required!");
+                    routineNameEditText.setError("This name is already taken! Please choose a different one.");
                 }
             }
         });
 
     }
 
-    private boolean hasBeenFilled(EditText editText) {
-        return !(TextUtils.isEmpty(editText.getText().toString()));
+    private boolean notSameName(String routineName) {
+        RoutineDao routineDao = AppDatabase.getInstance(getApplicationContext()).routineDao();
+        Routine r = routineDao.findRoutineByName(routineName);
+        return r == null;
+    }
+
+    private void saveRoutine(EditText routineNameEditText) {
+        Log.d("Save routine", "saving routine with name " + routineNameEditText);
+        RoutineDao routineDao = AppDatabase.getInstance(getApplicationContext()).routineDao();
+        routineDao.insert(new Routine(routineNameEditText.getText().toString()));
+    }
+
+    private boolean hasBeenFilled(String routineName) {
+        return !(TextUtils.isEmpty(routineName));
     }
 }
