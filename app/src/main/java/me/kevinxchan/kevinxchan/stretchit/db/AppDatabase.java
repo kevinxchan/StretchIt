@@ -18,10 +18,15 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract RoutineDao routineDao();
     public abstract ExerciseDao exerciseDao();
 
-    public static AppDatabase getInstance(final Context context) {
+    public static AppDatabase getInstance(final Context context, boolean inMemory) {
         if (instance == null) {
-            instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, dbName)
-                    .allowMainThreadQueries().build(); // TODO: change in production
+            if (inMemory) {
+                instance = Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase.class)
+                        .allowMainThreadQueries().build(); // TODO: change in production
+            } else {
+                instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, dbName)
+                        .allowMainThreadQueries().build(); // TODO: change in production
+            }
         }
         return instance;
     }

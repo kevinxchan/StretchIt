@@ -11,21 +11,30 @@ import java.util.List;
 
 @Dao
 public interface ExerciseDao {
+    @Query("SELECT * FROM exercise")
+    List<Exercise> getListOfExercises();
+
+    @Query("SELECT routineId FROM exercise WHERE eid = :eid")
+    int getRoutineIdFromExerciseId(int eid);
+
+    @Query("SELECT category FROM exercise WHERE eid = :eid")
+    Category getCategoryFromId(int eid);
+
     @Query("SELECT * FROM exercise ORDER BY name ASC")
     LiveData<List<Exercise>> getAllExercises();
 
-    @Query("SELECT * FROM exercise WHERE name = :name")
-    Exercise getExerciseByName(String name);
+    @Query("SELECT * FROM exercise WHERE eid = :eid")
+    Exercise getExerciseById(int eid);
 
     @Insert
     void insert(Exercise exercise);
 
-    @Query("UPDATE exercise SET category = :newCategory WHERE name = :name")
-    void updateExerciseCategory(Category newCategory, String name);
+    @Query("UPDATE exercise SET category = :newCategory WHERE eid = :eid")
+    void setExerciseCategory(Category newCategory, int eid);
 
-    @Query("UPDATE exercise SET name = :newName WHERE name = :oldName")
-    void updateExerciseName(String newName, String oldName);
+    @Query("UPDATE exercise SET name = :newName WHERE eid = :eid")
+    void setExerciseNameById(String newName, int eid);
 
-    @Query("DELETE FROM exercise WHERE name = :name")
-    void deleteByName(String name);
+    @Query("DELETE FROM exercise WHERE eid = :eid")
+    void deleteByName(int eid);
 }

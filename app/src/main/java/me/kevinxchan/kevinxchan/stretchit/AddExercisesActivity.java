@@ -38,7 +38,7 @@ public class AddExercisesActivity extends AppCompatActivity {
         recyclerViewExercises = initRecyclerView();
 
         for (int i = 0; i < 10; i++) {
-            Exercise exercise = new Exercise(Category.COUNTDOWN, "foo");
+            Exercise exercise = new Exercise(Category.COUNTDOWN, "foo", 2);
             exercises.add(exercise);
         }
 

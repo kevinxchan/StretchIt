@@ -43,14 +43,14 @@ public class RoutineNameActivity extends AppCompatActivity {
     }
 
     private boolean notSameName(String routineName) {
-        RoutineDao routineDao = AppDatabase.getInstance(getApplicationContext()).routineDao();
-        Routine r = routineDao.findRoutineByName(routineName);
+        RoutineDao routineDao = AppDatabase.getInstance(this, false).routineDao();
+        Routine r = routineDao.getRoutineByName(routineName);
         return r == null;
     }
 
     private void saveRoutine(EditText routineNameEditText) {
         Log.d("Save routine", "saving routine with name " + routineNameEditText);
-        RoutineDao routineDao = AppDatabase.getInstance(getApplicationContext()).routineDao();
+        RoutineDao routineDao = AppDatabase.getInstance(this, false).routineDao();
         routineDao.insert(new Routine(routineNameEditText.getText().toString()));
     }
 

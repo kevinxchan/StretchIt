@@ -15,7 +15,7 @@ public class ExerciseViewModel extends AndroidViewModel {
 
     public ExerciseViewModel(@NonNull Application application) {
         super(application);
-        exerciseDao = AppDatabase.getInstance(application).exerciseDao();
+        exerciseDao = AppDatabase.getInstance(application, false).exerciseDao();
         exerciseLiveData = exerciseDao.getAllExercises();
     }
 
@@ -27,11 +27,11 @@ public class ExerciseViewModel extends AndroidViewModel {
         exerciseDao.insert(exercise);
     }
 
-    public void updateExerciseName(String newName, String oldName) {
-        exerciseDao.updateExerciseName(newName, oldName);
+    public void updateExerciseName(String newName, int eid) {
+        exerciseDao.setExerciseNameById(newName, eid);
     }
 
-    public void deleteByName(String name) {
-        exerciseDao.deleteByName(name);
+    public void deleteById(int eid) {
+        exerciseDao.deleteByName(eid);
     }
 }

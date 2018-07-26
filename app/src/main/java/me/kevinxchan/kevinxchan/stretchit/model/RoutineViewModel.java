@@ -15,7 +15,7 @@ public class RoutineViewModel extends AndroidViewModel {
 
     public RoutineViewModel(@NonNull Application application) {
         super(application);
-        routineDao = AppDatabase.getInstance(application).routineDao();
+        routineDao = AppDatabase.getInstance(application, false).routineDao();
         routineLiveData = routineDao.getAllRoutines();
     }
 
@@ -27,12 +27,12 @@ public class RoutineViewModel extends AndroidViewModel {
         routineDao.insert(routine);
     }
 
-    public void updateRoutineName(String oldName, String newName) {
-        routineDao.updateRoutineName(oldName, newName);
+    public void setRoutineName(String oldName, String newName) {
+        routineDao.setRoutineName(oldName, newName);
     }
 
-    public void updateRoutineTimesUsed(int num, String name) {
-        routineDao.updateRoutineTimesUsed(num, name);
+    public void setRoutineTimesUsed(int num, String name) {
+        routineDao.setRoutineTimesUsed(num, name);
     }
 
     public void deleteByName(String name) {

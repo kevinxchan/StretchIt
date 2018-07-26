@@ -8,7 +8,7 @@ import android.support.annotation.NonNull;
                 parentColumns = "rid",
                 childColumns = "routineId",
                 onDelete = ForeignKey.CASCADE),
-        indices = {@Index(value = "name", unique = true), @Index("routineId")})
+        indices = {@Index("eid"), @Index("routineId")})
 public class Exercise {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "eid")
@@ -22,11 +22,13 @@ public class Exercise {
     private String name;
 
     @ColumnInfo(name = "routineId")
+    @NonNull
     private int routineId;
 
-    public Exercise(Category category, @NonNull String name) {
+    public Exercise(Category category, @NonNull String name, @NonNull int routineId) {
         this.category = category;
         this.name = name;
+        this.routineId = routineId;
     }
 
     public int getExerciseID() {

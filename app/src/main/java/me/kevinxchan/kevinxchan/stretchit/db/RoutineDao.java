@@ -12,19 +12,31 @@ import java.util.List;
 @Dao
 public interface RoutineDao {
     @Query("SELECT * FROM routine")
+    List<Routine> getListOfRoutines();
+
+    @Query("SELECT * FROM routine")
     LiveData<List<Routine>> getAllRoutines();
 
     @Query("SELECT * FROM routine WHERE name = :name ORDER BY name ASC")
-    Routine findRoutineByName(String name);
+    Routine getRoutineByName(String name);
 
-    @Insert(onConflict = OnConflictStrategy.ABORT)
-    void insert(Routine routine);
+    @Query("SELECT * FROM routine WHERE rid = :rid")
+    Routine getRoutineById(int rid);
+
+    @Query("SELECT num_times_used FROM routine WHERE name = :name")
+    int getNumTimesUsedByName(String name);
+
+    @Query("SELECT num_times_used FROM routine WHERE rid = :rid")
+    int getNumTimesUsedById(int rid);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    long insert(Routine routine);
 
     @Query("UPDATE routine SET name = :setToName WHERE name = :originalName")
-    void updateRoutineName(String setToName, String originalName);
+    void setRoutineName(String setToName, String originalName);
 
     @Query("UPDATE routine SET num_times_used = :newNumTimesUsed WHERE name = :name")
-    void updateRoutineTimesUsed(int newNumTimesUsed, String name);
+    void setRoutineTimesUsed(int newNumTimesUsed, String name);
 
     @Query("DELETE FROM routine WHERE name = :name")
     void deleteByName(String name);

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "f396da59f5f532c53707d8cf1ca78964",
+    "identityHash": "8384ab08b770d295a42ad6e0ef665f86",
     "entities": [
       {
         "tableName": "routine",
@@ -82,12 +82,12 @@
         },
         "indices": [
           {
-            "name": "index_exercise_name",
-            "unique": true,
+            "name": "index_exercise_eid",
+            "unique": false,
             "columnNames": [
-              "name"
+              "eid"
             ],
-            "createSql": "CREATE UNIQUE INDEX `index_exercise_name` ON `${TABLE_NAME}` (`name`)"
+            "createSql": "CREATE  INDEX `index_exercise_eid` ON `${TABLE_NAME}` (`eid`)"
           },
           {
             "name": "index_exercise_routineId",
@@ -115,7 +115,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"f396da59f5f532c53707d8cf1ca78964\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"8384ab08b770d295a42ad6e0ef665f86\")"
     ]
   }
 }
