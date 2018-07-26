@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context="me.kevinxchan.kevinxchan.stretchit.AddExercisesActivity">
+    <item
+            android:title="@string/done"
+            android:id="@+id/action_confirm_routine_finished"
+            android:orderInCategory="300"
+            android:icon="@drawable/check_confirm"
+            app:showAsAction="ifRoom"/>
+</menu>

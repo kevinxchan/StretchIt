@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ExerciseActivity extends AppCompatActivity {
-    List<String> exerciseCategories;
-    List<String> hoursScroll;
-    List<String> minutesScroll;
-    List<String> secondsScroll;
+    private List<String> exerciseCategories;
+    private List<String> hoursScroll;
+    private List<String> minutesScroll;
+    private List<String> secondsScroll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
