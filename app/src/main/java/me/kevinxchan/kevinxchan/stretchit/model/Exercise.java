@@ -25,10 +25,14 @@ public class Exercise {
     @NonNull
     private int routineId;
 
-    public Exercise(Category category, @NonNull String name, @NonNull int routineId) {
+    @ColumnInfo(name = "duration") // string as "HH:MM:SS"
+    private String duration;
+
+    public Exercise(Category category, @NonNull String name, @NonNull int routineId, String duration) {
         this.category = category;
         this.name = name;
         this.routineId = routineId;
+        this.duration = duration;
     }
 
     public int getExerciseID() {
@@ -61,5 +65,13 @@ public class Exercise {
 
     public void setRoutineId(int routineId) {
         this.routineId = routineId;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 }
