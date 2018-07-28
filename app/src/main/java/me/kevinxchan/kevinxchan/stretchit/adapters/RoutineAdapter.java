@@ -1,6 +1,5 @@
 package me.kevinxchan.kevinxchan.stretchit.adapters;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,6 @@ import java.util.List;
 public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHolder> {
     private View.OnClickListener onClickListener;
     private List<Routine> routines;
-    private Context context;
 
     public RoutineAdapter(List<Routine> routines, View.OnClickListener onClickListener) {
         this.routines = routines;
