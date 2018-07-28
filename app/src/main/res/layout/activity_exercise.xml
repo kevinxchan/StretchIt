@@ -97,10 +97,13 @@
                       android:paddingStart="5dp"
                       android:paddingEnd="5dp"/>
         </LinearLayout>
-        <Button
-                android:text="@string/done"
+        <android.support.design.widget.FloatingActionButton
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/doneBtn"
-                android:layout_gravity="center"/>
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:layout_gravity="bottom|end"
+                android:layout_height="wrap_content"
+                android:id="@+id/doneFab"
+                app:fabSize="normal"
+                app:srcCompat="@drawable/ic_done_white"/>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

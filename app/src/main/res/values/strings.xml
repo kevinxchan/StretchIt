@@ -22,4 +22,5 @@
     <string name="s">s</string>
     <string name="done">Done</string>
     <string name="routines_times_used">Times used:</string>
+    <string name="activity_exercises_title">Add exercise</string>
 </resources>
