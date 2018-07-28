@@ -23,6 +23,10 @@ public class ExerciseViewModel extends AndroidViewModel {
         return exerciseLiveData;
     }
 
+    public LiveData<List<Exercise>> getExerciseListByRId(int rid) {
+        return exerciseDao.getExercisesByRid(rid);
+    }
+
     // TODO: figure out what to put here
     public void insert(Exercise exercise) {
         exerciseDao.insert(exercise);

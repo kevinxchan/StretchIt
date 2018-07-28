@@ -114,7 +114,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        // TODO: when clicked, go to exercises page specifically for this routine
-        Log.d("onclick", "hello i am clicked");
+        Log.d("ON_CLICK_ROUTINE", view.getTag().toString());
+        Routine routine = (Routine) view.getTag();
+        Intent intent = new Intent(getApplicationContext(), AddExercisesActivity.class);
+        intent.putExtra("ROUTINE_ID", routine.getRoutineID());
+        startActivity(intent);
     }
 }
