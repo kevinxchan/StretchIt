@@ -21,10 +21,10 @@ public interface ExerciseDao {
     @Query("SELECT category FROM exercise WHERE eid = :eid")
     Category getCategoryFromId(int eid);
 
-    @Query("SELECT * FROM exercise ORDER BY name ASC")
+    @Query("SELECT * FROM exercise")
     LiveData<List<Exercise>> getAllExercises();
 
-    @Query("SELECT * FROM exercise WHERE routineId = :rid ORDER BY name ASC")
+    @Query("SELECT * FROM exercise WHERE routineId = :rid")
     LiveData<List<Exercise>> getExercisesByRid(int rid);
 
     @Query("SELECT * FROM exercise WHERE eid = :eid")
@@ -40,7 +40,7 @@ public interface ExerciseDao {
     void setExerciseNameById(String newName, int eid);
 
     @Query("DELETE FROM exercise WHERE eid = :eid")
-    void deleteByName(int eid);
+    void deleteById(int eid);
 
     @Delete
     void delete(Exercise exercise);

@@ -23,6 +23,7 @@ public class ExerciseViewModel extends AndroidViewModel {
         return exerciseLiveData;
     }
 
+    // TODO: figure out what to put here
     public void insert(Exercise exercise) {
         exerciseDao.insert(exercise);
     }
@@ -32,6 +33,6 @@ public class ExerciseViewModel extends AndroidViewModel {
     }
 
     public void deleteById(int eid) {
-        exerciseDao.deleteByName(eid);
+        exerciseDao.deleteById(eid);
     }
 }

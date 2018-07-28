@@ -11,11 +11,12 @@ import me.kevinxchan.kevinxchan.stretchit.model.Exercise;
 import java.util.List;
 
 public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHolder> {
-
     private List<Exercise> exercises;
+    private View.OnClickListener onClickListener;
 
-    public ExerciseAdapter(List<Exercise> exercises) {
+    public ExerciseAdapter(List<Exercise> exercises, View.OnClickListener onClickListener) {
         this.exercises = exercises;
+        this.onClickListener = onClickListener;
     }
 
     @Override
@@ -26,20 +27,39 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ExerciseAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.exerciseName.setText(exercises.get(i).getName());
+        if (viewHolder == null)
+            return;
+        Exercise exercise = exercises.get(i);
+        if (exercise != null) {
+            viewHolder.exerciseName.setText(exercise.getName());
+            viewHolder.exerciseCategory.setText(exercise.getCategory().toString());
+            viewHolder.exerciseDuration.setText(exercise.getDuration());
+            viewHolder.itemView.setOnClickListener(onClickListener);
+        }
     }
 
     @Override
     public int getItemCount() {
+        if (exercises == null)
+            return 0;
         return exercises.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView exerciseName;
+    public void setExerciseList(List<Exercise> exercises) {
+        this.exercises = exercises;
+        notifyDataSetChanged();
+    }
 
-        public ViewHolder(View itemView) {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public TextView exerciseName;
+        public TextView exerciseCategory;
+        public TextView exerciseDuration;
+
+        ViewHolder(View itemView) {
             super(itemView);
             exerciseName = itemView.findViewById(R.id.exerciseName);
+            exerciseCategory = itemView.findViewById(R.id.exerciseCategory);
+            exerciseDuration = itemView.findViewById(R.id.exerciseDuration);
         }
     }
 }
