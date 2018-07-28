@@ -1,10 +1,7 @@
 package me.kevinxchan.kevinxchan.stretchit.db;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.OnConflictStrategy;
-import android.arch.persistence.room.Query;
+import android.arch.persistence.room.*;
 import me.kevinxchan.kevinxchan.stretchit.model.Routine;
 
 import java.util.List;
@@ -40,4 +37,7 @@ public interface RoutineDao {
 
     @Query("DELETE FROM routine WHERE name = :name")
     void deleteByName(String name);
+
+    @Delete
+    void delete(Routine routine);
 }

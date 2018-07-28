@@ -2,6 +2,7 @@ package me.kevinxchan.kevinxchan.stretchit.db;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import me.kevinxchan.kevinxchan.stretchit.model.Category;
@@ -23,6 +24,9 @@ public interface ExerciseDao {
     @Query("SELECT * FROM exercise ORDER BY name ASC")
     LiveData<List<Exercise>> getAllExercises();
 
+    @Query("SELECT * FROM exercise WHERE routineId = :rid ORDER BY name ASC")
+    LiveData<List<Exercise>> getExercisesByRid(int rid);
+
     @Query("SELECT * FROM exercise WHERE eid = :eid")
     Exercise getExerciseById(int eid);
 
@@ -37,4 +41,7 @@ public interface ExerciseDao {
 
     @Query("DELETE FROM exercise WHERE eid = :eid")
     void deleteByName(int eid);
+
+    @Delete
+    void delete(Exercise exercise);
 }

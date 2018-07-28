@@ -23,6 +23,7 @@ public class RoutineViewModel extends AndroidViewModel {
         return routineLiveData;
     }
 
+    // TODO: figure out what to put here when display
     public void insert(Routine routine) {
         routineDao.insert(routine);
     }
