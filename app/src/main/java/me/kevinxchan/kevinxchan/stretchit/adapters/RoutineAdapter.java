@@ -12,17 +12,18 @@ import me.kevinxchan.kevinxchan.stretchit.model.Routine;
 import java.util.List;
 
 public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHolder> {
-    private LayoutInflater layoutInflater;
+    private View.OnClickListener onClickListener;
     private List<Routine> routines;
     private Context context;
 
-    public RoutineAdapter(List<Routine> routines) {
+    public RoutineAdapter(List<Routine> routines, View.OnClickListener onClickListener) {
         this.routines = routines;
+        this.onClickListener = onClickListener;
     }
 
     @Override
     public RoutineAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View view = layoutInflater.inflate(R.layout.routine_row, viewGroup, false);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.routine_row, viewGroup, false);
         return new RoutineAdapter.ViewHolder(view);
     }
 
@@ -34,14 +35,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHold
         if (routine != null) {
             viewHolder.routineName.setText(routines.get(i).getName());
             viewHolder.numTimesUsed.setText("Times used: " + routines.get(i).getNumTimesUsed());
-//            viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    DialogFragment dialogFragment = DirectorSaveDialogFragment.newInstance(director.fullName);
-//                    dialogFragment.show(((AppCompatActivity) context).getSupportFragmentManager(), TAG_DIALOG_DIRECTOR_SAVE);
-//                }
-//            });
-            // TODO
+            viewHolder.itemView.setOnClickListener(onClickListener);
         }
     }
 
@@ -61,7 +55,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHold
         public TextView routineName;
         public TextView numTimesUsed;
 
-        public ViewHolder(View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             routineName = (TextView) itemView.findViewById(R.id.routineName);
             numTimesUsed = (TextView) itemView.findViewById(R.id.numTimesUsed);

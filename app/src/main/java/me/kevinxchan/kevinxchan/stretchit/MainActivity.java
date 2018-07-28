@@ -1,11 +1,15 @@
 package me.kevinxchan.kevinxchan.stretchit;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,35 +17,31 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import me.kevinxchan.kevinxchan.stretchit.adapters.RoutineAdapter;
 import me.kevinxchan.kevinxchan.stretchit.model.Routine;
+import me.kevinxchan.kevinxchan.stretchit.model.RoutineViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private RoutineViewModel viewModel;
+    private RoutineAdapter routineAdapter;
+    private RecyclerView.OnScrollListener scrollListener;
+
     private FloatingActionMenu floatingActionMenuMain;
-    private FloatingActionButton createRoutinesBtn;
-    private RecyclerView routinesRecyclerView;
-    private RecyclerView.Adapter adapter;
-    private List<Routine> routines;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Stretch It");
+        setToolbar(getString(R.string.app_name));
 
-        floatingActionMenuMain = (FloatingActionMenu) findViewById(R.id.floatingActionMenuMain);
-        createRoutinesBtn = (FloatingActionButton) findViewById(R.id.floatingActionItemAddRoutine);
-        routines = new ArrayList<>();
-        routinesRecyclerView = initRecyclerView();
+        initView();
+    }
 
-        for (int i = 0; i < 10; i++) {
-            Routine routine = new Routine("Foo");
-            routines.add(routine);
-        }
+    private void initView() {
+        floatingActionMenuMain = findViewById(R.id.floatingActionMenuMain);
 
+        FloatingActionButton createRoutinesBtn = findViewById(R.id.floatingActionItemAddRoutine);
         createRoutinesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -49,7 +49,26 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(linkCreateRoutine);
             }
         });
-        routinesRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+
+        final RecyclerView routinesRecyclerView = findViewById(R.id.routinesRecyclerView);
+        scrollListener = initScrollListener();
+        routinesRecyclerView.addOnScrollListener(scrollListener);
+
+        routineAdapter = new RoutineAdapter(new ArrayList<Routine>(), this);
+        routinesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        routinesRecyclerView.setAdapter(routineAdapter);
+
+        viewModel = ViewModelProviders.of(this).get(RoutineViewModel.class);
+        viewModel.getRoutinesList().observe(this, new android.arch.lifecycle.Observer<List<Routine>>() {
+            @Override
+            public void onChanged(@Nullable List<Routine> routines) {
+                routineAdapter.setRoutineList(routines);
+            }
+        });
+    }
+
+    private RecyclerView.OnScrollListener initScrollListener() {
+        return new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE)
@@ -63,15 +82,12 @@ public class MainActivity extends AppCompatActivity {
                     floatingActionMenuMain.hideMenu(true);
                 super.onScrolled(recyclerView, dx, dy);
             }
-        });
+        };
     }
 
-    private RecyclerView initRecyclerView() {
-        routinesRecyclerView = (RecyclerView) findViewById(R.id.routinesRecyclerView);
-        routinesRecyclerView.setLayoutManager(new LinearLayoutManager(null));
-        adapter = new RoutineAdapter(routines);
-        routinesRecyclerView.setAdapter(adapter);
-        return routinesRecyclerView;
+    private void setToolbar(@NonNull String string) {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle(string);
     }
 
     @Override
@@ -94,5 +110,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        // TODO: when clicked, go to exercises page specifically for this routine
+        Log.d("onclick", "hello i am clicked");
     }
 }
