@@ -46,6 +46,7 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
             @Override
             public void onClick(View view) {
                 Intent exerciseIntent = new Intent(getApplicationContext(), ExerciseActivity.class);
+                exerciseIntent.putExtra("ROUTINE_ID", currRoutineId);
                 startActivity(exerciseIntent);
             }
         });
