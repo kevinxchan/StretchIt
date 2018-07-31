@@ -52,6 +52,7 @@ public class RoutineNameActivity extends AppCompatActivity {
         Log.d("Save routine", "saving routine with name " + routineNameEditText);
         RoutineDao routineDao = AppDatabase.getInstance(this, false).routineDao();
         routineDao.insert(new Routine(routineNameEditText.getText().toString()));
+        // TODO: pass routine ID to exercise page so can add exercises off the bat.
     }
 
     private boolean hasBeenFilled(String routineName) {

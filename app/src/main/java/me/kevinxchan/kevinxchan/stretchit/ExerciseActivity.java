@@ -6,9 +6,10 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.aigestudio.wheelpicker.WheelPicker;
 import me.kevinxchan.kevinxchan.stretchit.model.Category;
@@ -26,6 +27,7 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
     private String hours;
     private String minutes;
     private String seconds;
+    private String categoryStr;
 
     private ExerciseViewModel exerciseViewModel;
 
@@ -44,9 +46,13 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
 
     private void initFormData() {
         WheelPicker exerciseCategoryPicker = (WheelPicker) findViewById(R.id.exerciseCategoryWheelPicker);
+        exerciseCategoryPicker.setOnItemSelectedListener(this);
         WheelPicker hoursWheelPicker = (WheelPicker) findViewById(R.id.hoursWheelPicker);
+        hoursWheelPicker.setOnItemSelectedListener(this);
         WheelPicker minutesWheelPicker = (WheelPicker) findViewById(R.id.minutesWheelPicker);
+        minutesWheelPicker.setOnItemSelectedListener(this);
         WheelPicker secondsWheelPicker = (WheelPicker) findViewById(R.id.secondsWheelPicker);
+        secondsWheelPicker.setOnItemSelectedListener(this);
 
         initializeExerciseCategoryPicker(exerciseCategoryPicker);
         List<String> hoursScroll = initializeTimeArray(0, 99);
@@ -56,17 +62,15 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
         hoursWheelPicker.setData(hoursScroll);
         minutesWheelPicker.setData(minutesScroll);
         secondsWheelPicker.setData(secondsScroll);
+
+        categoryStr = exerciseCategoryPicker.getData().get(0).toString();
+        hours = hoursWheelPicker.getData().get(0).toString();
+        minutes = minutesWheelPicker.getData().get(0).toString();
+        seconds = secondsWheelPicker.getData().get(0).toString();
     }
 
     private void initView() {
         exerciseName = findViewById(R.id.exerciseNameInput);
-        TextView category = findViewById(R.id.exerciseCategory);
-        if (category != null) {
-            String categoryStr = category.getText().toString();
-            exerciseCategory = Category.valueOf(categoryStr.toUpperCase());
-        }
-        exerciseDuration = hours + ":" + minutes + ":" + seconds;
-
         exerciseViewModel = ViewModelProviders.of(this).get(ExerciseViewModel.class);
 
         FloatingActionButton doneFab = findViewById(R.id.doneFab);
@@ -74,6 +78,8 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
             @Override
             public void onClick(View view) {
                 if (formComplete()) {
+                    exerciseCategory = Category.valueOf(categoryStr.toUpperCase());
+                    exerciseDuration = hours + ":" + minutes + ":" + seconds;
                     exerciseViewModel.addExercise(new Exercise(
                             exerciseCategory,
                             exerciseName.getText().toString(),
@@ -88,7 +94,10 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
     }
 
     private boolean formComplete() {
-        return exerciseName != null && exerciseCategory != null && exerciseDuration != null;
+        boolean nameNotEmpty = !TextUtils.isEmpty(exerciseName.getText().toString());
+        boolean durationNotEmpty = hours != null && minutes != null && seconds != null;
+        boolean categoryNotEmpty = !TextUtils.isEmpty(categoryStr);
+        return nameNotEmpty && categoryNotEmpty && durationNotEmpty;
     }
 
     private void setToolbar(@NonNull String string) {
@@ -119,8 +128,12 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
     @Override
     public void onItemSelected(WheelPicker picker, Object data, int position) {
         switch (picker.getId()) {
+            case R.id.exerciseCategoryWheelPicker:
+                categoryStr = data.toString();
+                break;
             case R.id.hoursWheelPicker:
                 hours = data.toString();
+                Log.d("hours", hours);
                 break;
             case R.id.minutesWheelPicker:
                 minutes = data.toString();
