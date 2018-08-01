@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         routineAdapter = new RoutineAdapter(new ArrayList<Routine>(), this);
         routinesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        routinesRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         routinesRecyclerView.setAdapter(routineAdapter);
 
         viewModel = ViewModelProviders.of(this).get(RoutineViewModel.class);

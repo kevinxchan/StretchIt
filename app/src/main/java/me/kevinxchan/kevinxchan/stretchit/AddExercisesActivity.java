@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -57,6 +58,7 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
 
         exerciseAdapter = new ExerciseAdapter(new ArrayList<Exercise>(), this);
         recyclerViewExercises.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewExercises.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         recyclerViewExercises.setAdapter(exerciseAdapter);
 
         viewModel = ViewModelProviders.of(this).get(ExerciseViewModel.class);
@@ -119,4 +121,6 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         Log.d("add exercise click", "hello i'm clicked");
     }
+
+    // TODO: if back button pressed, go to main activity
 }
