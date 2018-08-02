@@ -35,6 +35,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
             viewHolder.exerciseCategory.setText(exercise.getCategory().toString());
             viewHolder.exerciseDuration.setText(exercise.getDuration());
             viewHolder.itemView.setOnClickListener(onClickListener);
+            viewHolder.itemView.setTag(exercise);
         }
     }
 

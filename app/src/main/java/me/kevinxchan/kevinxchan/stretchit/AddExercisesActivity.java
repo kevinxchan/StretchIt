@@ -119,8 +119,20 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        Log.d("add exercise click", "hello i'm clicked");
+        Exercise exercise = (Exercise) view.getTag();
+        Log.d("EXERCISE_CLICKED", "exercise " + exercise.getName() + " clicked");
+        Intent editExerciseIntent = new Intent(getApplicationContext(), ExerciseActivity.class);
+        editExerciseIntent.putExtra("EXERCISE_NAME", exercise.getName());
+        editExerciseIntent.putExtra("EXERCISE_CATEGORY", exercise.getCategory());
+        editExerciseIntent.putExtra("EXERCISE_DURATION", exercise.getDuration());
+        startActivity(editExerciseIntent);
     }
 
-    // TODO: if back button pressed, go to main activity
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent backToMainIntent = new Intent(AddExercisesActivity.this, MainActivity.class);
+        startActivity(backToMainIntent);
+        finish();
+    }
 }
