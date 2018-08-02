@@ -30,7 +30,7 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
     private String seconds;
     private String categoryStr;
 
-    private int currExerciseId = -1;
+    private int currExerciseId;
     private String currExerciseName;
     private Category currExerciseCategory;
     private String currExerciseDuration;
@@ -104,6 +104,8 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
     }
 
     private void setCategoryPosition(WheelPicker exerciseCategoryPicker) {
+        if (currExerciseCategory == null)
+            return;
         String category = currExerciseCategory.toString();
         int pos;
         switch (category) {
@@ -136,13 +138,13 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
                     exerciseCategory = Category.valueOf(categoryStr.toUpperCase());
                     exerciseDuration = hours + ":" + minutes + ":" + seconds;
                     String exerciseNameStr = exerciseNameEditText.getText().toString();
-                    if (currExerciseId != -1) {
+                    if (currExerciseId != 0) {
                         Log.d(TAG, "exercise with id " + currExerciseId + " being updated");
                         Exercise e = new Exercise(exerciseCategory, exerciseNameStr, currRoutineId, exerciseDuration);
                         e.setExerciseID(currExerciseId);
                         exerciseViewModel.updateExercise(e);
                     } else {
-                        Log.d(TAG, "exercise with id " + currExerciseId + " being added");
+                        Log.d(TAG, "new exercise being added");
                         exerciseViewModel.addExercise(new Exercise(
                                 exerciseCategory,
                                 exerciseNameStr,
