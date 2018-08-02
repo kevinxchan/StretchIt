@@ -30,6 +30,8 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
     private RecyclerView.OnScrollListener onScrollListener;
     private int currRoutineId;
 
+    private static final String TAG = "AddExercisesActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,8 +122,10 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
     @Override
     public void onClick(View view) {
         Exercise exercise = (Exercise) view.getTag();
-        Log.d("EXERCISE_CLICKED", "exercise " + exercise.getName() + " clicked");
+        Log.d(TAG, "exercise " + exercise.getName() + " clicked");
         Intent editExerciseIntent = new Intent(getApplicationContext(), ExerciseActivity.class);
+        editExerciseIntent.putExtra("ROUTINE_ID", currRoutineId);
+        editExerciseIntent.putExtra("EXERCISE_ID", exercise.getExerciseID());
         editExerciseIntent.putExtra("EXERCISE_NAME", exercise.getName());
         editExerciseIntent.putExtra("EXERCISE_CATEGORY", exercise.getCategory());
         editExerciseIntent.putExtra("EXERCISE_DURATION", exercise.getDuration());

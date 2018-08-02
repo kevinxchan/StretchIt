@@ -30,13 +30,20 @@ public class ExerciseViewModel extends AndroidViewModel {
         return exerciseDao.getExercisesByRid(rid);
     }
 
-    // TODO: figure out what to put here
-    public void insert(Exercise exercise) {
-        exerciseDao.insert(exercise);
+    public void updateExercise(final Exercise exercise) {
+        new updateAsyncTask(appDatabase).execute(exercise);
     }
 
     public void updateExerciseName(String newName, int eid) {
-        exerciseDao.setExerciseNameById(newName, eid);
+        exerciseDao.setExerciseName(newName, eid);
+    }
+
+    public void updateExerciseCategory(Category category, int eid) {
+        exerciseDao.setExerciseCategory(category, eid);
+    }
+
+    public void updateExerciseDuration(String duration, int eid) {
+        exerciseDao.setDuration(duration, eid);
     }
 
     public void deleteById(int eid) {
@@ -58,6 +65,21 @@ public class ExerciseViewModel extends AndroidViewModel {
         protected Void doInBackground(final Exercise... exercises) {
             ExerciseDao exerciseDao = db.exerciseDao();
             exerciseDao.insert(exercises[0]);
+            return null;
+        }
+    }
+
+    private static class updateAsyncTask extends AsyncTask<Exercise, Void, Void> {
+        private AppDatabase db;
+
+        updateAsyncTask(AppDatabase appDatabase) {
+            db = appDatabase;
+        }
+
+        @Override
+        protected Void doInBackground(Exercise... exercises) {
+            ExerciseDao exerciseDao = db.exerciseDao();
+            exerciseDao.updateExercise(exercises[0]);
             return null;
         }
     }

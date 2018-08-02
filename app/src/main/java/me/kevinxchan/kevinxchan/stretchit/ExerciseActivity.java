@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.aigestudio.wheelpicker.WheelPicker;
 import me.kevinxchan.kevinxchan.stretchit.model.Category;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class ExerciseActivity extends AppCompatActivity implements WheelPicker.OnItemSelectedListener {
     private int currRoutineId;
-    private EditText exerciseName;
+    private EditText exerciseNameEditText;
     private Category exerciseCategory;
     private String exerciseDuration;
     private String hours;
@@ -29,7 +30,14 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
     private String seconds;
     private String categoryStr;
 
+    private int currExerciseId = -1;
+    private String currExerciseName;
+    private Category currExerciseCategory;
+    private String currExerciseDuration;
+
     private ExerciseViewModel exerciseViewModel;
+
+    private static final String TAG = "ExerciseActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +45,13 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
         setContentView(R.layout.activity_exercise);
         setToolbar(getString(R.string.activity_exercises_title));
         Bundle extras = getIntent().getExtras();
-        if (extras != null)
+        if (extras != null) {
             currRoutineId = extras.getInt("ROUTINE_ID");
+            currExerciseId = extras.getInt("EXERCISE_ID");
+            currExerciseName = extras.getString("EXERCISE_NAME");
+            currExerciseCategory = (Category) extras.get("EXERCISE_CATEGORY");
+            currExerciseDuration = extras.getString("EXERCISE_DURATION");
+        }
 
         initFormData();
         initView();
@@ -63,14 +76,56 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
         minutesWheelPicker.setData(minutesScroll);
         secondsWheelPicker.setData(secondsScroll);
 
-        categoryStr = exerciseCategoryPicker.getData().get(0).toString();
-        hours = hoursWheelPicker.getData().get(0).toString();
-        minutes = minutesWheelPicker.getData().get(0).toString();
-        seconds = secondsWheelPicker.getData().get(0).toString();
+        setTimePositions(hoursWheelPicker, minutesWheelPicker, secondsWheelPicker);
+        setCategoryPosition(exerciseCategoryPicker);
+        // default values: first option in picker
+        int currentCategoryPosition = exerciseCategoryPicker.getCurrentItemPosition();
+        int currentHoursPosition = hoursWheelPicker.getCurrentItemPosition();
+        int currentMinutesPosition = minutesWheelPicker.getCurrentItemPosition();
+        int currentSecondsPosition = secondsWheelPicker.getCurrentItemPosition();
+
+        categoryStr = exerciseCategoryPicker.getData().get(currentCategoryPosition).toString();
+        hours = hoursWheelPicker.getData().get(currentHoursPosition).toString();
+        minutes = minutesWheelPicker.getData().get(currentMinutesPosition).toString();
+        seconds = secondsWheelPicker.getData().get(currentSecondsPosition).toString();
+    }
+
+    private void setTimePositions(WheelPicker hoursWheelPicker, WheelPicker minutesWheelPicker, WheelPicker secondsWheelPicker) {
+        if (currExerciseDuration == null)
+            return;
+        String[] timeArr = currExerciseDuration.split(":");
+        int hours = Integer.parseInt(timeArr[0]);
+        int minutes = Integer.parseInt(timeArr[1]);
+        int seconds = Integer.parseInt(timeArr[2]);
+
+        hoursWheelPicker.setSelectedItemPosition(hours);
+        minutesWheelPicker.setSelectedItemPosition(minutes);
+        secondsWheelPicker.setSelectedItemPosition(seconds);
+    }
+
+    private void setCategoryPosition(WheelPicker exerciseCategoryPicker) {
+        String category = currExerciseCategory.toString();
+        int pos;
+        switch (category) {
+            case "Countdown":
+                pos = 0;
+                break;
+            case "Exercise":
+                pos = 1;
+                break;
+            case "Rest":
+                pos = 2;
+                break;
+            default:
+                pos = 0;
+                break;
+        }
+        exerciseCategoryPicker.setSelectedItemPosition(pos);
     }
 
     private void initView() {
-        exerciseName = findViewById(R.id.exerciseNameInput);
+        exerciseNameEditText = findViewById(R.id.exerciseNameInput);
+        exerciseNameEditText.setText(currExerciseName, TextView.BufferType.EDITABLE);
         exerciseViewModel = ViewModelProviders.of(this).get(ExerciseViewModel.class);
 
         FloatingActionButton doneFab = findViewById(R.id.doneFab);
@@ -80,11 +135,20 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
                 if (formComplete()) {
                     exerciseCategory = Category.valueOf(categoryStr.toUpperCase());
                     exerciseDuration = hours + ":" + minutes + ":" + seconds;
-                    exerciseViewModel.addExercise(new Exercise(
-                            exerciseCategory,
-                            exerciseName.getText().toString(),
-                            currRoutineId,
-                            exerciseDuration));
+                    String exerciseNameStr = exerciseNameEditText.getText().toString();
+                    if (currExerciseId != -1) {
+                        Log.d(TAG, "exercise with id " + currExerciseId + " being updated");
+                        Exercise e = new Exercise(exerciseCategory, exerciseNameStr, currRoutineId, exerciseDuration);
+                        e.setExerciseID(currExerciseId);
+                        exerciseViewModel.updateExercise(e);
+                    } else {
+                        Log.d(TAG, "exercise with id " + currExerciseId + " being added");
+                        exerciseViewModel.addExercise(new Exercise(
+                                exerciseCategory,
+                                exerciseNameStr,
+                                currRoutineId,
+                                exerciseDuration));
+                    }
                     finish();
                 } else {
                     Toast.makeText(ExerciseActivity.this, "Please fill in all fields!", Toast.LENGTH_SHORT).show();
@@ -94,7 +158,7 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
     }
 
     private boolean formComplete() {
-        boolean nameNotEmpty = !TextUtils.isEmpty(exerciseName.getText().toString());
+        boolean nameNotEmpty = !TextUtils.isEmpty(exerciseNameEditText.getText().toString());
         boolean durationNotEmpty = hours != null && minutes != null && seconds != null;
         boolean categoryNotEmpty = !TextUtils.isEmpty(categoryStr);
         return nameNotEmpty && categoryNotEmpty && durationNotEmpty;
@@ -133,7 +197,6 @@ public class ExerciseActivity extends AppCompatActivity implements WheelPicker.O
                 break;
             case R.id.hoursWheelPicker:
                 hours = data.toString();
-                Log.d("hours", hours);
                 break;
             case R.id.minutesWheelPicker:
                 minutes = data.toString();
