@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private FloatingActionMenu floatingActionMenuMain;
 
+    private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,10 +118,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        Log.d("ON_CLICK_ROUTINE", view.getTag().toString());
         Routine routine = (Routine) view.getTag();
+        Log.d(TAG, "clicked routine id: " + String.valueOf(routine.getRoutineID()));
         Intent intent = new Intent(getApplicationContext(), AddExercisesActivity.class);
         intent.putExtra("ROUTINE_ID", routine.getRoutineID());
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent backToStarterIntent = new Intent(MainActivity.this, StarterActivity.class);
+        startActivity(backToStarterIntent);
+        finish();
     }
 }

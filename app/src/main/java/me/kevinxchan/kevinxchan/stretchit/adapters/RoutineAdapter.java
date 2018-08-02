@@ -31,7 +31,7 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHold
             return;
         Routine routine = routines.get(i);
         if (routine != null) {
-            viewHolder.routineName.setText(routines.get(i).getName());
+            viewHolder.routineName.setText(routine.getName());
             viewHolder.numTimesUsed.setText("Times used: " + routines.get(i).getNumTimesUsed());
             viewHolder.itemView.setOnClickListener(onClickListener);
             viewHolder.itemView.setTag(routine);
