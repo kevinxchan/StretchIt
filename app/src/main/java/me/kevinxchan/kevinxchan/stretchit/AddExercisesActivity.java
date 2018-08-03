@@ -12,12 +12,14 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import me.kevinxchan.kevinxchan.stretchit.adapters.ExerciseAdapter;
 import me.kevinxchan.kevinxchan.stretchit.model.Exercise;
+import me.kevinxchan.kevinxchan.stretchit.model.ExerciseItemTouchCallback;
 import me.kevinxchan.kevinxchan.stretchit.model.ExerciseViewModel;
 
 import java.util.ArrayList;
@@ -70,6 +72,25 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
                 exerciseAdapter.setExerciseList(exercises);
             }
         });
+
+        ExerciseItemTouchCallback exerciseItemTouchCallback = new ExerciseItemTouchCallback(this) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder1) {
+                // TODO: implement this for drag and drop behavior
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
+                int position = viewHolder.getAdapterPosition();
+                Exercise exercise = exerciseAdapter.getExerciseAtPosition(position);
+                Log.d(TAG, "deleting exercise: " + exercise.getName());
+                viewModel.deleteExercise(exercise);
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(exerciseItemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerViewExercises);
     }
 
     private RecyclerView.OnScrollListener initOnScrollListener() {
