@@ -31,8 +31,9 @@ public class RoutineNameActivity extends AppCompatActivity {
                     routineNameEditText.setError("Routine name is required!");
 
                 if (hasBeenFilled(routineName) && notSameName(routineName)) {
-                    saveRoutine(routineNameEditText);
+                    int rid = saveRoutine(routineNameEditText);
                     Intent nextIntent = new Intent(getApplicationContext(), AddExercisesActivity.class);
+                    nextIntent.putExtra("ROUTINE_ID", rid);
                     startActivity(nextIntent);
                 } else {
                     routineNameEditText.setError("This name is already taken! Please choose a different one.");
@@ -48,10 +49,11 @@ public class RoutineNameActivity extends AppCompatActivity {
         return r == null;
     }
 
-    private void saveRoutine(EditText routineNameEditText) {
+    private int saveRoutine(EditText routineNameEditText) {
         Log.d("Save routine", "saving routine with name " + routineNameEditText);
         RoutineDao routineDao = AppDatabase.getInstance(this, false).routineDao();
-        routineDao.insert(new Routine(routineNameEditText.getText().toString()));
+        int rid = (int) routineDao.insert(new Routine(routineNameEditText.getText().toString()));
+        return rid;
     }
 
     private boolean hasBeenFilled(String routineName) {

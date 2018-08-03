@@ -67,9 +67,9 @@ public class DatabaseModelTest {
         Routine routine = new Routine("foo");
         int rid = (int) r.insert(routine);
 
-        Exercise exercise = new Exercise(Category.COUNTDOWN, "start", rid);
-        Exercise exercise2 = new Exercise(Category.EXERCISE, "run", rid);
-        Exercise exercise3 = new Exercise(Category.REST, "chill", rid);
+        Exercise exercise = new Exercise(Category.COUNTDOWN, "start", rid, "01:01:01");
+        Exercise exercise2 = new Exercise(Category.EXERCISE, "run", rid, "01:01:01");
+        Exercise exercise3 = new Exercise(Category.REST, "chill", rid, "01:01:01");
 
         e.insert(exercise);
         e.insert(exercise2);
@@ -86,8 +86,8 @@ public class DatabaseModelTest {
         Routine routine = new Routine("foo");
         int rid = (int) r.insert(routine);
 
-        Exercise exercise = new Exercise(Category.COUNTDOWN, "foo", rid);
-        Exercise exercise2 = new Exercise(Category.REST, "bar", rid);
+        Exercise exercise = new Exercise(Category.COUNTDOWN, "foo", rid, "01:01:01");
+        Exercise exercise2 = new Exercise(Category.REST, "bar", rid, "01:01:01");
         e.insert(exercise);
         e.insert(exercise2);
 
@@ -103,14 +103,14 @@ public class DatabaseModelTest {
         Routine routine = new Routine("foo");
         int rid = (int) r.insert(routine);
 
-        Exercise e1 = new Exercise(Category.REST, "foo", rid);
-        Exercise e2 = new Exercise(Category.REST, "foo", rid);
+        Exercise e1 = new Exercise(Category.REST, "foo", rid, "01:01:01");
+        Exercise e2 = new Exercise(Category.REST, "foo", rid, "00:00:00");
 
         e.insert(e1);
         e.insert(e2);
         assertEquals(e.getExerciseById(1).getName(), e.getExerciseById(2).getName());
 
-        e.setExerciseNameById("bar", 2);
+        e.setExerciseName("bar", 2);
         assertNotEquals(e.getExerciseById(1).getName(), e.getExerciseById(2).getName());
     }
 }

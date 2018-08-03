@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -28,6 +29,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private RecyclerView.OnScrollListener scrollListener;
 
     private FloatingActionMenu floatingActionMenuMain;
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         routineAdapter = new RoutineAdapter(new ArrayList<Routine>(), this);
         routinesRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        routinesRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         routinesRecyclerView.setAdapter(routineAdapter);
 
         viewModel = ViewModelProviders.of(this).get(RoutineViewModel.class);
@@ -114,7 +118,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        // TODO: when clicked, go to exercises page specifically for this routine
-        Log.d("onclick", "hello i am clicked");
+        Routine routine = (Routine) view.getTag();
+        Log.d(TAG, "clicked routine id: " + String.valueOf(routine.getRoutineID()));
+        Intent intent = new Intent(getApplicationContext(), AddExercisesActivity.class);
+        intent.putExtra("ROUTINE_ID", routine.getRoutineID());
+        startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent backToStarterIntent = new Intent(MainActivity.this, StarterActivity.class);
+        startActivity(backToStarterIntent);
+        finish();
     }
 }
