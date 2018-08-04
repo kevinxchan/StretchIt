@@ -22,10 +22,10 @@ public abstract class AppDatabase extends RoomDatabase {
         if (instance == null) {
             if (inMemory) {
                 instance = Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase.class)
-                        .allowMainThreadQueries().build(); // TODO: change in production
+                        .build();
             } else {
                 instance = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, dbName)
-                        .allowMainThreadQueries().build(); // TODO: change in production
+                        .build();
             }
         }
         return instance;
