@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit.model;
+package me.kevinxchan.kevinxchan.stretchit.model.exercise;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import me.kevinxchan.kevinxchan.stretchit.db.AppDatabase;
 import me.kevinxchan.kevinxchan.stretchit.db.ExerciseDao;
+import me.kevinxchan.kevinxchan.stretchit.model.Category;
 
 import java.util.List;
 

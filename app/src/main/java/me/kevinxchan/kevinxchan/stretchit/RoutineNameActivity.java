@@ -9,8 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import me.kevinxchan.kevinxchan.stretchit.model.Routine;
-import me.kevinxchan.kevinxchan.stretchit.model.RoutineViewModel;
+import me.kevinxchan.kevinxchan.stretchit.model.routine.Routine;
+import me.kevinxchan.kevinxchan.stretchit.model.routine.RoutineViewModel;
 import me.kevinxchan.kevinxchan.stretchit.model.TaskCompleted;
 
 import java.util.List;

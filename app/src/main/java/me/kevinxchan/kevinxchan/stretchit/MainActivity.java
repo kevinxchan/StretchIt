@@ -17,10 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
-import me.kevinxchan.kevinxchan.stretchit.adapters.RoutineAdapter;
+import me.kevinxchan.kevinxchan.stretchit.model.routine.RoutineAdapter;
 import me.kevinxchan.kevinxchan.stretchit.model.ItemTouchCallback;
-import me.kevinxchan.kevinxchan.stretchit.model.Routine;
-import me.kevinxchan.kevinxchan.stretchit.model.RoutineViewModel;
+import me.kevinxchan.kevinxchan.stretchit.model.routine.Routine;
+import me.kevinxchan.kevinxchan.stretchit.model.routine.RoutineViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

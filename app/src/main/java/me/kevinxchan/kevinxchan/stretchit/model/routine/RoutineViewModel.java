@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit.model;
+package me.kevinxchan.kevinxchan.stretchit.model.routine;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import me.kevinxchan.kevinxchan.stretchit.db.AppDatabase;
 import me.kevinxchan.kevinxchan.stretchit.db.RoutineDao;
+import me.kevinxchan.kevinxchan.stretchit.model.TaskCompleted;
 
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class RoutineViewModel extends AndroidViewModel {
     public void setRoutineTimesUsed(int num, String name) {
         routineDao.setRoutineTimesUsed(num, name);
     }
-    
+
     private static class addAsyncTask extends AsyncTask<Routine, Void, Integer> {
         private AppDatabase db;
         private TaskCompleted taskCompleted;

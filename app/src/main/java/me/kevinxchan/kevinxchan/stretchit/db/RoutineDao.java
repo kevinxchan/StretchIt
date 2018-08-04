@@ -2,7 +2,7 @@ package me.kevinxchan.kevinxchan.stretchit.db;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.*;
-import me.kevinxchan.kevinxchan.stretchit.model.Routine;
+import me.kevinxchan.kevinxchan.stretchit.model.routine.Routine;
 
 import java.util.List;
 

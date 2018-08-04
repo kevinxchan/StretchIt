@@ -17,10 +17,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import me.kevinxchan.kevinxchan.stretchit.adapters.ExerciseAdapter;
-import me.kevinxchan.kevinxchan.stretchit.model.Exercise;
+import me.kevinxchan.kevinxchan.stretchit.model.exercise.ExerciseAdapter;
+import me.kevinxchan.kevinxchan.stretchit.model.exercise.Exercise;
 import me.kevinxchan.kevinxchan.stretchit.model.ItemTouchCallback;
-import me.kevinxchan.kevinxchan.stretchit.model.ExerciseViewModel;
+import me.kevinxchan.kevinxchan.stretchit.model.exercise.ExerciseViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

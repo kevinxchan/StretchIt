@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit.adapters;
+package me.kevinxchan.kevinxchan.stretchit.model.routine;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import me.kevinxchan.kevinxchan.stretchit.R;
-import me.kevinxchan.kevinxchan.stretchit.model.Routine;
 
 import java.util.List;
 

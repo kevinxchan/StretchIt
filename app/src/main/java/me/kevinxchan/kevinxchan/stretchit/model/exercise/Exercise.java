@@ -1,7 +1,9 @@
-package me.kevinxchan.kevinxchan.stretchit.model;
+package me.kevinxchan.kevinxchan.stretchit.model.exercise;
 
 import android.arch.persistence.room.*;
 import android.support.annotation.NonNull;
+import me.kevinxchan.kevinxchan.stretchit.model.Category;
+import me.kevinxchan.kevinxchan.stretchit.model.routine.Routine;
 
 @Entity(tableName = "exercise",
         foreignKeys = @ForeignKey(entity = Routine.class,
