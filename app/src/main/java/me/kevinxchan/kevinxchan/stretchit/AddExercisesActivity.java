@@ -19,7 +19,7 @@ import android.view.MenuItem;
 import android.view.View;
 import me.kevinxchan.kevinxchan.stretchit.adapters.ExerciseAdapter;
 import me.kevinxchan.kevinxchan.stretchit.model.Exercise;
-import me.kevinxchan.kevinxchan.stretchit.model.ExerciseItemTouchCallback;
+import me.kevinxchan.kevinxchan.stretchit.model.ItemTouchCallback;
 import me.kevinxchan.kevinxchan.stretchit.model.ExerciseViewModel;
 
 import java.util.ArrayList;
@@ -73,7 +73,7 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
-        ExerciseItemTouchCallback exerciseItemTouchCallback = new ExerciseItemTouchCallback(this) {
+        ItemTouchCallback itemTouchCallback = new ItemTouchCallback(this) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder1) {
                 // TODO: implement this for drag and drop behavior
@@ -89,7 +89,7 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
             }
         };
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(exerciseItemTouchCallback);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchCallback);
         itemTouchHelper.attachToRecyclerView(recyclerViewExercises);
     }
 

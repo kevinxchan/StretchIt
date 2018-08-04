@@ -10,7 +10,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 import me.kevinxchan.kevinxchan.stretchit.R;
 
-public abstract class ExerciseItemTouchCallback extends ItemTouchHelper.Callback {
+public abstract class ItemTouchCallback extends ItemTouchHelper.Callback {
     // graphics
     private Drawable deleteIcon;
     private Drawable background;
@@ -18,7 +18,7 @@ public abstract class ExerciseItemTouchCallback extends ItemTouchHelper.Callback
     private int intrinsicHeight;
     private Paint clearPaint;
 
-    public ExerciseItemTouchCallback(Context context) {
+    public ItemTouchCallback(Context context) {
         deleteIcon = ContextCompat.getDrawable(context, R.drawable.ic_delete_white_24dp);
         background = new ColorDrawable(Color.RED); // red background
         intrinsicWidth = deleteIcon.getIntrinsicWidth();

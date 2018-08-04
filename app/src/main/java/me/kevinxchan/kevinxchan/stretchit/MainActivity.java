@@ -10,6 +10,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import android.view.View;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import me.kevinxchan.kevinxchan.stretchit.adapters.RoutineAdapter;
+import me.kevinxchan.kevinxchan.stretchit.model.ItemTouchCallback;
 import me.kevinxchan.kevinxchan.stretchit.model.Routine;
 import me.kevinxchan.kevinxchan.stretchit.model.RoutineViewModel;
 
@@ -69,6 +71,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 routineAdapter.setRoutineList(routines);
             }
         });
+
+        ItemTouchCallback itemTouchCallback = new ItemTouchCallback(this) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder viewHolder1) {
+                // don't need to implement since routines shouldn't be re-orderable
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int i) {
+                int position = viewHolder.getAdapterPosition();
+                Routine routine = routineAdapter.getRoutineAtPosition(position);
+                Log.d(TAG, "deleting routine: " + routine.getName());
+                viewModel.delete(routine);
+            }
+        };
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemTouchCallback);
+        itemTouchHelper.attachToRecyclerView(routinesRecyclerView);
     }
 
     private RecyclerView.OnScrollListener initScrollListener() {
