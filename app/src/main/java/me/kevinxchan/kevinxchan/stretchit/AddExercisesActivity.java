@@ -113,6 +113,7 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
     private void setToolbar(@NonNull String string) {
         Toolbar toolbar = findViewById(R.id.activity_add_exercises_toolbar);
         toolbar.setTitle(string);
+        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -130,12 +131,9 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.action_confirm_routine_finished:
-                // TODO: add all exercises to routine
-                Intent backtoMainIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(backtoMainIntent);
+            case R.id.action_start_timer:
+                Log.d(TAG, "lets start the activity!");
         }
-
 
         return super.onOptionsItemSelected(item);
     }

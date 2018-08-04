@@ -5,9 +5,9 @@
         xmlns:tools="http://schemas.android.com/tools"
         tools:context="me.kevinxchan.kevinxchan.stretchit.AddExercisesActivity">
     <item
-            android:title="@string/done"
-            android:id="@+id/action_confirm_routine_finished"
+            android:title="@string/activity_start_timer"
+            android:id="@+id/action_start_timer"
             android:orderInCategory="300"
-            android:icon="@drawable/check_confirm"
+            android:icon="@drawable/ic_play_circle_filled_white_24dp"
             app:showAsAction="ifRoom"/>
 </menu>
