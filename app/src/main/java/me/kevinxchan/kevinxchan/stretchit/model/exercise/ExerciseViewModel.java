@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit.model;
+package me.kevinxchan.kevinxchan.stretchit.model.exercise;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import me.kevinxchan.kevinxchan.stretchit.db.AppDatabase;
 import me.kevinxchan.kevinxchan.stretchit.db.ExerciseDao;
+import me.kevinxchan.kevinxchan.stretchit.model.Category;
 
 import java.util.List;
 
@@ -46,8 +47,8 @@ public class ExerciseViewModel extends AndroidViewModel {
         exerciseDao.setDuration(duration, eid);
     }
 
-    public void deleteById(int eid) {
-        exerciseDao.deleteById(eid);
+    public void deleteExercise(final Exercise exercise) {
+        new deleteAsyncTask(appDatabase).execute(exercise);
     }
 
     public void addExercise(final Exercise exercise) {
@@ -80,6 +81,21 @@ public class ExerciseViewModel extends AndroidViewModel {
         protected Void doInBackground(Exercise... exercises) {
             ExerciseDao exerciseDao = db.exerciseDao();
             exerciseDao.updateExercise(exercises[0]);
+            return null;
+        }
+    }
+
+    private static class deleteAsyncTask extends AsyncTask<Exercise, Void, Void> {
+        private AppDatabase db;
+
+        deleteAsyncTask(AppDatabase appDatabase) {
+            db = appDatabase;
+        }
+
+        @Override
+        protected Void doInBackground(Exercise... exercises) {
+            ExerciseDao exerciseDao = db.exerciseDao();
+            exerciseDao.delete(exercises[0]);
             return null;
         }
     }

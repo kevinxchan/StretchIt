@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit.adapters;
+package me.kevinxchan.kevinxchan.stretchit.model.routine;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import me.kevinxchan.kevinxchan.stretchit.R;
-import me.kevinxchan.kevinxchan.stretchit.model.Routine;
 
 import java.util.List;
 
@@ -45,6 +44,10 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHold
         return routines.size();
     }
 
+    public Routine getRoutineAtPosition(int position) {
+        return routines.get(position);
+    }
+
     public void setRoutineList(List<Routine> routines) {
         this.routines = routines;
         notifyDataSetChanged();
@@ -56,8 +59,8 @@ public class RoutineAdapter extends RecyclerView.Adapter<RoutineAdapter.ViewHold
 
         ViewHolder(View itemView) {
             super(itemView);
-            routineName = (TextView) itemView.findViewById(R.id.routineName);
-            numTimesUsed = (TextView) itemView.findViewById(R.id.numTimesUsed);
+            routineName = itemView.findViewById(R.id.routineName);
+            numTimesUsed = itemView.findViewById(R.id.numTimesUsed);
         }
     }
 }

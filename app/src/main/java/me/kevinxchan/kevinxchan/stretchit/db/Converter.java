@@ -1,6 +1,7 @@
-package me.kevinxchan.kevinxchan.stretchit.model;
+package me.kevinxchan.kevinxchan.stretchit.db;
 
 import android.arch.persistence.room.TypeConverter;
+import me.kevinxchan.kevinxchan.stretchit.model.Category;
 
 public class Converter {
     @TypeConverter

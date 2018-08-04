@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit.adapters;
+package me.kevinxchan.kevinxchan.stretchit.model.exercise;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import me.kevinxchan.kevinxchan.stretchit.R;
-import me.kevinxchan.kevinxchan.stretchit.model.Exercise;
 
 import java.util.List;
 
@@ -22,7 +21,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
     @Override
     public ExerciseAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.exercise_row, viewGroup, false);
-        return new ViewHolder(view);
+        return new ExerciseAdapter.ViewHolder(view);
     }
 
     @Override
@@ -44,6 +43,10 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         if (exercises == null)
             return 0;
         return exercises.size();
+    }
+
+    public Exercise getExerciseAtPosition(int position) {
+        return exercises.get(position);
     }
 
     public void setExerciseList(List<Exercise> exercises) {

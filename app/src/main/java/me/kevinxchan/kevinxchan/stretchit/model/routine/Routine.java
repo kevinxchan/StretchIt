@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit.model;
+package me.kevinxchan.kevinxchan.stretchit.model.routine;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;

@@ -14,8 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.aigestudio.wheelpicker.WheelPicker;
 import me.kevinxchan.kevinxchan.stretchit.model.Category;
-import me.kevinxchan.kevinxchan.stretchit.model.Exercise;
-import me.kevinxchan.kevinxchan.stretchit.model.ExerciseViewModel;
+import me.kevinxchan.kevinxchan.stretchit.model.exercise.Exercise;
+import me.kevinxchan.kevinxchan.stretchit.model.exercise.ExerciseViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
