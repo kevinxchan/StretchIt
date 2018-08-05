@@ -132,7 +132,10 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
 
         switch (id) {
             case R.id.action_start_timer:
-                Log.d(TAG, "lets start the activity!");
+                Log.d(TAG, "starting timer activity");
+                Intent timerIntent = new Intent(AddExercisesActivity.this, TimerActivity.class);
+                startActivity(timerIntent);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
