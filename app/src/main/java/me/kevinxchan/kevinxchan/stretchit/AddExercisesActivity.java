@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 import me.kevinxchan.kevinxchan.stretchit.model.exercise.ExerciseAdapter;
 import me.kevinxchan.kevinxchan.stretchit.model.exercise.Exercise;
 import me.kevinxchan.kevinxchan.stretchit.model.ItemTouchCallback;
@@ -133,8 +134,14 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
         switch (id) {
             case R.id.action_start_timer:
                 Log.d(TAG, "starting timer activity");
-                Intent timerIntent = new Intent(AddExercisesActivity.this, TimerActivity.class);
-                startActivity(timerIntent);
+                List<Exercise> exercises = exerciseAdapter.getAllExercises();
+                if (exercises.size() == 0)
+                    Toast.makeText(this, "You need at least one exercise to start the timer.", Toast.LENGTH_LONG).show();
+                else {
+                    Intent timerIntent = new Intent(AddExercisesActivity.this, TimerActivity.class);
+                    timerIntent.putParcelableArrayListExtra("EXERCISES", (ArrayList<Exercise>) exercises);
+                    startActivity(timerIntent);
+                }
                 break;
         }
 
