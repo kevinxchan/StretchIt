@@ -1,9 +1,11 @@
 package me.kevinxchan.kevinxchan.stretchit;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -61,15 +63,40 @@ public class TimerActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
 
-        if (timerState == TimerState.Running){
+        if (timerState == TimerState.Running) {
             timer.cancel();
         }
-        else if (timerState == TimerState.Paused){
+        else if (timerState == TimerState.Paused) {
         }
 
         PrefUtil.setPreviousTimerLengthSeconds(timerLengthSeconds, this);
         PrefUtil.setSecondsRemaining(secondsRemaining, this);
         PrefUtil.setTimerState(timerState, this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        buildDialog(builder);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
+    private void buildDialog(AlertDialog.Builder builder) {
+        builder.setMessage(R.string.timer_back_dialog_msg);
+        builder.setCancelable(true);
+        builder.setPositiveButton(R.string.timer_continue, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        builder.setNegativeButton(R.string.timer_cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel();
+            }
+        });
     }
 
     private void initTimer(){
