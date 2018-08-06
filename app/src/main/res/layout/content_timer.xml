@@ -19,7 +19,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-                android:id="@+id/textView_countdown"
+                android:id="@+id/countdownTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="10:00:00"
@@ -44,11 +44,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/recycler_view_margin"
+                    android:id="@+id/currentCategoryImageView"
                     android:src="@drawable/ic_play_arrow_white_24dp"/>
 
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/currentExerciseTextView"
                     tools:text="foo"
                     android:textSize="24sp"
                     android:layout_margin="@dimen/recycler_view_margin"
