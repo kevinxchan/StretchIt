@@ -51,28 +51,29 @@ public class TimerActivity extends AppCompatActivity {
         initView();
         initFabListeners();
         initTimerValues();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         initTimer();
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        if (timerState == TimerState.Running) {
-            timer.cancel();
-        }
-        else if (timerState == TimerState.Paused) {
-        }
-
-        PrefUtil.setPreviousTimerLengthSeconds(timerLengthSeconds, this);
-        PrefUtil.setSecondsRemaining(secondsRemaining, this);
-        PrefUtil.setTimerState(timerState, this);
-    }
+//    @Override
+//    public void onResume() {
+//        super.onResume();
+//        initTimer();
+//    }
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//
+//        if (timerState == TimerState.Running) {
+//            timer.cancel();
+//        }
+//        else if (timerState == TimerState.Paused) {
+//        }
+//
+//        PrefUtil.setPreviousTimerLengthSeconds(timerLengthSeconds, this);
+//        PrefUtil.setSecondsRemaining(secondsRemaining, this);
+//        PrefUtil.setTimerState(timerState, this);
+//    }
 
     @Override
     public void onBackPressed() {
@@ -102,8 +103,8 @@ public class TimerActivity extends AppCompatActivity {
     private void initTimer(){
         timerState = PrefUtil.getTimerState(this);
 
-        //we don't want to change the length of the timer which is already running
-        //if the length was changed in settings while it was backgrounded
+        // we don't want to change the length of the timer which is already running
+        // if the length was changed in settings while it was backgrounded
         if (timerState == TimerState.Stopped)
             setNewTimerLength();
         else
@@ -179,7 +180,7 @@ public class TimerActivity extends AppCompatActivity {
     private void setNewTimerLength() {
         long lengthInMinutes = PrefUtil.getTimerLength(this);
         timerLengthSeconds = lengthInMinutes * 60;
-        materialProgressBar.setMax((int) lengthInMinutes);
+        materialProgressBar.setMax((int) timerLengthSeconds);
     }
 
     private void setPreviousTimerLength() {
@@ -193,7 +194,6 @@ public class TimerActivity extends AppCompatActivity {
         long secondsInMinuteUntilFinished = secondsRemaining - minutesUntilFinished * 60;
         long minutesInHourUntilFinished = minutesUntilFinished - hoursUntilFinished * 60;
         String timeStr = formatNumber(hoursUntilFinished) + ":" + formatNumber(minutesInHourUntilFinished) + ":" + formatNumber(secondsInMinuteUntilFinished);
-        Log.d(TAG, "timerLengthSeconds: " + timerLengthSeconds + " secondsRemaining: " + secondsRemaining);
         countdownTextView.setText(timeStr);
         materialProgressBar.setProgress((int) (timerLengthSeconds - secondsRemaining));
     }
