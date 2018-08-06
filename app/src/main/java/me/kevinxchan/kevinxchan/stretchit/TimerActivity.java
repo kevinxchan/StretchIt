@@ -17,7 +17,7 @@ public class TimerActivity extends AppCompatActivity {
 
     private long timerLengthSeconds;
     private long secondsRemaining;
-    private long timerState;
+    private TimerState timerState;
     private List<Exercise> exercises;
 
     @Override
@@ -35,7 +35,19 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void initTimerValues() {
+        Exercise firstExercise = exercises.get(0);
+        timerLengthSeconds = strToSeconds(firstExercise.getDuration());
+        Log.d(TAG, "timerLengthSeconds: " + timerLengthSeconds);
+        timerState = TimerState.Stopped;
+        secondsRemaining = 0;
+    }
 
+    private long strToSeconds(String duration) {
+        String[] timeArr = duration.split(":");
+        long hours = Long.parseLong(timeArr[0]);
+        long minutes = Long.parseLong(timeArr[1]);
+        long seconds = Long.parseLong(timeArr[2]);
+        return hours * 60 * 60 + minutes * 60 + seconds;
     }
 
     private void setToolbar(@NonNull String string) {
