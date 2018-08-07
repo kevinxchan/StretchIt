@@ -39,8 +39,8 @@ public class RoutineViewModel extends AndroidViewModel {
         routineDao.setRoutineName(oldName, newName);
     }
 
-    public void setRoutineTimesUsed(int num, String name) {
-        routineDao.setRoutineTimesUsed(num, name);
+    public void incrementRoutineTimesUsed(int rid) {
+        new updateTimesUsedAsyncTask(appDatabase).execute(rid);
     }
 
     private static class addAsyncTask extends AsyncTask<Routine, Void, Integer> {
@@ -81,4 +81,20 @@ public class RoutineViewModel extends AndroidViewModel {
             return null;
         }
     }
+
+    private static class updateTimesUsedAsyncTask extends AsyncTask<Integer, Void, Void> {
+        private AppDatabase db;
+
+        updateTimesUsedAsyncTask(AppDatabase appDatabase) {
+            db = appDatabase;
+        }
+
+        @Override
+        protected Void doInBackground(Integer... ids) {
+            RoutineDao routineDao = db.routineDao();
+            routineDao.incrementRoutineTimesUsed(ids[0]);
+            return null;
+        }
+    }
+
 }

@@ -139,6 +139,7 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
                     Toast.makeText(this, "You need at least one exercise to start the timer.", Toast.LENGTH_LONG).show();
                 else {
                     Intent timerIntent = new Intent(AddExercisesActivity.this, TimerActivity.class);
+                    timerIntent.putExtra("ROUTINE_ID", currRoutineId);
                     timerIntent.putParcelableArrayListExtra("EXERCISES", (ArrayList<Exercise>) exercises);
                     startActivity(timerIntent);
                 }

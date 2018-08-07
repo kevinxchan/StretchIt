@@ -1,5 +1,6 @@
 package me.kevinxchan.kevinxchan.stretchit;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import me.kevinxchan.kevinxchan.stretchit.model.Category;
 import me.kevinxchan.kevinxchan.stretchit.model.exercise.Exercise;
+import me.kevinxchan.kevinxchan.stretchit.model.routine.RoutineViewModel;
 import me.kevinxchan.kevinxchan.stretchit.util.PrefUtil;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
@@ -20,6 +22,8 @@ import java.util.List;
 
 public class TimerActivity extends AppCompatActivity {
     private static final String TAG = "TimerActivity";
+    private int currRoutineId;
+    private RoutineViewModel routineViewModel;
     public enum TimerState {
         Stopped, Paused, Running
     }
@@ -45,6 +49,7 @@ public class TimerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timer);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
+            currRoutineId = extras.getInt("ROUTINE_ID");
             exercises = extras.getParcelableArrayList("EXERCISES");
             Log.d(TAG, "received exercise list of length " + exercises.size());
         }
@@ -56,6 +61,7 @@ public class TimerActivity extends AppCompatActivity {
         initTimer();
     }
 
+    // TODO: implement these for running timer in background
 //    @Override
 //    public void onResume() {
 //        super.onResume();
@@ -107,6 +113,8 @@ public class TimerActivity extends AppCompatActivity {
 
         // we don't want to change the length of the timer which is already running
         // if the length was changed in settings while it was backgrounded
+        // TODO: this will always be true, as user cannot exit the timer activity.
+        // TODO: change for background timer
         if (timerState == TimerState.Stopped)
             setNewTimerLength();
         else
@@ -126,6 +134,7 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        routineViewModel = ViewModelProviders.of(this).get(RoutineViewModel.class);
         startFab = findViewById(R.id.fab_start);
         pauseFab = findViewById(R.id.fab_pause);
         stopFab = findViewById(R.id.fab_stop);
@@ -152,7 +161,7 @@ public class TimerActivity extends AppCompatActivity {
         });
     }
 
-    private void startTimer(){
+    private void startTimer() {
         timerState = TimerState.Running;
 
         timer = new CountDownTimer(secondsRemaining * 1000, 1000) {
@@ -170,20 +179,36 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void onTimerFinished() {
-        timerState = TimerState.Stopped;
-        setNewTimerLength();
-        materialProgressBar.setProgress(0);
-        PrefUtil.setSecondsRemaining(timerLengthSeconds, this);
-        secondsRemaining = timerLengthSeconds;
-        updateButtons();
-        updateCountdownUI();
+        if (currExerciseCounter == exercises.size()) {
+            timerState = TimerState.Stopped;
+            incrementTimesUsed(currRoutineId);
+            wrapUpActivity(); // TODO: finish implementing this
+        } else {
+            setNewTimerLength();
+            materialProgressBar.setProgress(0);
+//            PrefUtil.setSecondsRemaining(timerLengthSeconds, this);
+            secondsRemaining = timerLengthSeconds;
+            updateButtons();
+            updateCountdownUI();
+            startTimer();
+        }
+    }
+
+    private void incrementTimesUsed(int currRoutineId) {
+        routineViewModel.incrementRoutineTimesUsed(currRoutineId);
+    }
+
+    private void wrapUpActivity() {
+        Log.d(TAG, "finished all exercises!");
+        // TODO: show the congratulatory activity
+//        Intent finishIntent = new Intent(TimerActivity.this, CongratulationsActivity.class);
+//        startActivity(finishIntent);
+        finish();
     }
 
     private void setNewTimerLength() {
 //        long lengthInMinutes = PrefUtil.getTimerLength(this);
 //        timerLengthSeconds = lengthInMinutes * 60;
-        if (currExerciseCounter == exercises.size())
-            return;
         Exercise next = exercises.get(currExerciseCounter);
         currCategoryImageView.setImageResource(getCategoryImage(next));
         currExerciseName.setText(next.getName());
