@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit;
+package me.kevinxchan.kevinxchan.routineme;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -9,9 +9,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import me.kevinxchan.kevinxchan.stretchit.model.routine.Routine;
-import me.kevinxchan.kevinxchan.stretchit.model.routine.RoutineViewModel;
-import me.kevinxchan.kevinxchan.stretchit.model.TaskCompleted;
+import me.kevinxchan.kevinxchan.routineme.model.routine.Routine;
+import me.kevinxchan.kevinxchan.routineme.model.routine.RoutineViewModel;
+import me.kevinxchan.kevinxchan.routineme.model.TaskCompleted;
 
 import java.util.List;
 

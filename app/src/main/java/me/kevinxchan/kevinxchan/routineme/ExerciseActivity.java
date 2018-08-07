@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit;
+package me.kevinxchan.kevinxchan.routineme;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -13,9 +13,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.aigestudio.wheelpicker.WheelPicker;
-import me.kevinxchan.kevinxchan.stretchit.model.Category;
-import me.kevinxchan.kevinxchan.stretchit.model.exercise.Exercise;
-import me.kevinxchan.kevinxchan.stretchit.model.exercise.ExerciseViewModel;
+import me.kevinxchan.kevinxchan.routineme.model.Category;
+import me.kevinxchan.kevinxchan.routineme.model.exercise.Exercise;
+import me.kevinxchan.kevinxchan.routineme.model.exercise.ExerciseViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit.model;
+package me.kevinxchan.kevinxchan.routineme.model;
 
 import android.content.Context;
 import android.graphics.*;
@@ -8,7 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
-import me.kevinxchan.kevinxchan.stretchit.R;
+import me.kevinxchan.kevinxchan.routineme.R;
 
 public abstract class ItemTouchCallback extends ItemTouchHelper.Callback {
     // graphics

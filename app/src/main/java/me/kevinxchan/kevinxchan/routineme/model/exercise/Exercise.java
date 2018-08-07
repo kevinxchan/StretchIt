@@ -1,11 +1,11 @@
-package me.kevinxchan.kevinxchan.stretchit.model.exercise;
+package me.kevinxchan.kevinxchan.routineme.model.exercise;
 
 import android.arch.persistence.room.*;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
-import me.kevinxchan.kevinxchan.stretchit.model.Category;
-import me.kevinxchan.kevinxchan.stretchit.model.routine.Routine;
+import me.kevinxchan.kevinxchan.routineme.model.Category;
+import me.kevinxchan.kevinxchan.routineme.model.routine.Routine;
 
 @Entity(tableName = "exercise",
         foreignKeys = @ForeignKey(entity = Routine.class,

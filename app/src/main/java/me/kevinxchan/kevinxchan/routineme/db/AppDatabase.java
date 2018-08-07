@@ -1,12 +1,12 @@
-package me.kevinxchan.kevinxchan.stretchit.db;
+package me.kevinxchan.kevinxchan.routineme.db;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
-import me.kevinxchan.kevinxchan.stretchit.model.exercise.Exercise;
-import me.kevinxchan.kevinxchan.stretchit.model.routine.Routine;
+import me.kevinxchan.kevinxchan.routineme.model.exercise.Exercise;
+import me.kevinxchan.kevinxchan.routineme.model.routine.Routine;
 
 @Database(entities = { Routine.class, Exercise.class}, version = 1)
 @TypeConverters({ Converter.class })

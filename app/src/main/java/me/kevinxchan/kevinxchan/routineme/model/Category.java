@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit.model;
+package me.kevinxchan.kevinxchan.routineme.model;
 
 public enum Category {
     EXERCISE("Exercise"),

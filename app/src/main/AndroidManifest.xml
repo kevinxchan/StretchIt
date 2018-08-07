@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="me.kevinxchan.kevinxchan.stretchit">
+          package="me.kevinxchan.kevinxchan.routineme">
 
     <application
             android:allowBackup="true"
@@ -10,35 +10,35 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
         <activity
-                android:name=".MainActivity"
+                android:name="me.kevinxchan.kevinxchan.routineme.MainActivity"
                 android:label="@string/app_name"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>
         </activity>
-        <activity android:name=".StarterActivity">
+        <activity android:name="me.kevinxchan.kevinxchan.routineme.StarterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".RoutinesActivity">
+        <activity android:name="me.kevinxchan.kevinxchan.routineme.RoutinesActivity">
         </activity>
         <activity
-                android:name=".AddExercisesActivity"
+                android:name="me.kevinxchan.kevinxchan.routineme.AddExercisesActivity"
                 android:theme="@style/AppTheme.NoActionBar"
                 android:windowSoftInputMode="adjustPan">
         </activity>
         <activity
-                android:name=".ExerciseActivity"
+                android:name="me.kevinxchan.kevinxchan.routineme.ExerciseActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".RoutineNameActivity">
+        <activity android:name="me.kevinxchan.kevinxchan.routineme.RoutineNameActivity">
         </activity>
         <activity
-                android:name=".TimerActivity"
+                android:name="me.kevinxchan.kevinxchan.routineme.TimerActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>

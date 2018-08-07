@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit;
+package me.kevinxchan.kevinxchan.routineme;
 
 import org.junit.Test;
 

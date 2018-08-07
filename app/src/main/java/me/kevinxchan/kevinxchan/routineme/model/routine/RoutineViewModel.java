@@ -1,13 +1,13 @@
-package me.kevinxchan.kevinxchan.stretchit.model.routine;
+package me.kevinxchan.kevinxchan.routineme.model.routine;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-import me.kevinxchan.kevinxchan.stretchit.db.AppDatabase;
-import me.kevinxchan.kevinxchan.stretchit.db.RoutineDao;
-import me.kevinxchan.kevinxchan.stretchit.model.TaskCompleted;
+import me.kevinxchan.kevinxchan.routineme.db.AppDatabase;
+import me.kevinxchan.kevinxchan.routineme.db.RoutineDao;
+import me.kevinxchan.kevinxchan.routineme.model.TaskCompleted;
 
 import java.util.List;
 

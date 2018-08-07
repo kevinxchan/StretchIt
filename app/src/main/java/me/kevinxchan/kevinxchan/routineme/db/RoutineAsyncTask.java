@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit.db;
+package me.kevinxchan.kevinxchan.routineme.db;
 
 import android.os.AsyncTask;
 

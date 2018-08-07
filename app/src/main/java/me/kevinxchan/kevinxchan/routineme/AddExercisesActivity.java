@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit;
+package me.kevinxchan.kevinxchan.routineme;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
@@ -18,10 +18,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-import me.kevinxchan.kevinxchan.stretchit.model.exercise.ExerciseAdapter;
-import me.kevinxchan.kevinxchan.stretchit.model.exercise.Exercise;
-import me.kevinxchan.kevinxchan.stretchit.model.ItemTouchCallback;
-import me.kevinxchan.kevinxchan.stretchit.model.exercise.ExerciseViewModel;
+import me.kevinxchan.kevinxchan.routineme.model.exercise.ExerciseAdapter;
+import me.kevinxchan.kevinxchan.routineme.model.exercise.Exercise;
+import me.kevinxchan.kevinxchan.routineme.model.ItemTouchCallback;
+import me.kevinxchan.kevinxchan.routineme.model.exercise.ExerciseViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

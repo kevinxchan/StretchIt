@@ -1,13 +1,13 @@
-package me.kevinxchan.kevinxchan.stretchit.model.exercise;
+package me.kevinxchan.kevinxchan.routineme.model.exercise;
 
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-import me.kevinxchan.kevinxchan.stretchit.db.AppDatabase;
-import me.kevinxchan.kevinxchan.stretchit.db.ExerciseDao;
-import me.kevinxchan.kevinxchan.stretchit.model.Category;
+import me.kevinxchan.kevinxchan.routineme.db.AppDatabase;
+import me.kevinxchan.kevinxchan.routineme.db.ExerciseDao;
+import me.kevinxchan.kevinxchan.routineme.model.Category;
 
 import java.util.List;
 

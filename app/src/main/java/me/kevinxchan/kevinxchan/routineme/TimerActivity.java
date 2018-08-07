@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit;
+package me.kevinxchan.kevinxchan.routineme;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.DialogInterface;
@@ -12,10 +12,10 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
-import me.kevinxchan.kevinxchan.stretchit.model.Category;
-import me.kevinxchan.kevinxchan.stretchit.model.exercise.Exercise;
-import me.kevinxchan.kevinxchan.stretchit.model.routine.RoutineViewModel;
-import me.kevinxchan.kevinxchan.stretchit.util.PrefUtil;
+import me.kevinxchan.kevinxchan.routineme.model.Category;
+import me.kevinxchan.kevinxchan.routineme.model.exercise.Exercise;
+import me.kevinxchan.kevinxchan.routineme.model.routine.RoutineViewModel;
+import me.kevinxchan.kevinxchan.routineme.util.PrefUtil;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 import java.util.List;

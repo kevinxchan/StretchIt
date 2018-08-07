@@ -1,14 +1,14 @@
-package me.kevinxchan.kevinxchan.stretchit;
+package me.kevinxchan.kevinxchan.routineme;
 
 import android.arch.persistence.room.Room;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-import me.kevinxchan.kevinxchan.stretchit.db.AppDatabase;
-import me.kevinxchan.kevinxchan.stretchit.db.ExerciseDao;
-import me.kevinxchan.kevinxchan.stretchit.db.RoutineDao;
-import me.kevinxchan.kevinxchan.stretchit.model.Category;
-import me.kevinxchan.kevinxchan.stretchit.model.exercise.Exercise;
-import me.kevinxchan.kevinxchan.stretchit.model.routine.Routine;
+import me.kevinxchan.kevinxchan.routineme.db.AppDatabase;
+import me.kevinxchan.kevinxchan.routineme.db.ExerciseDao;
+import me.kevinxchan.kevinxchan.routineme.db.RoutineDao;
+import me.kevinxchan.kevinxchan.routineme.model.Category;
+import me.kevinxchan.kevinxchan.routineme.model.exercise.Exercise;
+import me.kevinxchan.kevinxchan.routineme.model.routine.Routine;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        tools:context="me.kevinxchan.kevinxchan.stretchit.AddExercisesActivity">
+        tools:context="me.kevinxchan.kevinxchan.routineme.AddExercisesActivity">
     <item
             android:title="@string/activity_start_timer"
             android:id="@+id/action_start_timer"

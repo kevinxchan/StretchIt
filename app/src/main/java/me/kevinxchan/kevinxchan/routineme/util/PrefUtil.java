@@ -1,9 +1,9 @@
-package me.kevinxchan.kevinxchan.stretchit.util;
+package me.kevinxchan.kevinxchan.routineme.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
-import me.kevinxchan.kevinxchan.stretchit.TimerActivity;
+import me.kevinxchan.kevinxchan.routineme.TimerActivity;
 
 public class PrefUtil {
     private static final String PREVIOUS_TIMER_LENGTH_SECONDS_ID = "me.kevinxchan.kevinxchan.previous_timer_length";

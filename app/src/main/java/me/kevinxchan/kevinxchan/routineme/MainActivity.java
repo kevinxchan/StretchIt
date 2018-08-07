@@ -1,4 +1,4 @@
-package me.kevinxchan.kevinxchan.stretchit;
+package me.kevinxchan.kevinxchan.routineme;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
@@ -17,10 +17,10 @@ import android.view.MenuItem;
 import android.view.View;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
-import me.kevinxchan.kevinxchan.stretchit.model.routine.RoutineAdapter;
-import me.kevinxchan.kevinxchan.stretchit.model.ItemTouchCallback;
-import me.kevinxchan.kevinxchan.stretchit.model.routine.Routine;
-import me.kevinxchan.kevinxchan.stretchit.model.routine.RoutineViewModel;
+import me.kevinxchan.kevinxchan.routineme.model.routine.RoutineAdapter;
+import me.kevinxchan.kevinxchan.routineme.model.ItemTouchCallback;
+import me.kevinxchan.kevinxchan.routineme.model.routine.Routine;
+import me.kevinxchan.kevinxchan.routineme.model.routine.RoutineViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
