@@ -32,6 +32,9 @@ public interface RoutineDao {
     @Query("UPDATE routine SET name = :setToName WHERE name = :originalName")
     void setRoutineName(String setToName, String originalName);
 
+    @Query("UPDATE routine SET num_times_used = :num WHERE name = :name")
+    void setRoutineTimesUsed(int num, String name);
+
     @Query("UPDATE routine SET num_times_used = num_times_used + 1 WHERE rid = :rid")
     void incrementRoutineTimesUsed(int rid);
 
