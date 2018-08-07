@@ -24,4 +24,9 @@
     <string name="routines_times_used">Times used:</string>
     <string name="activity_exercises_title">Add exercise</string>
     <string name="dot">\u2022</string>
+    <string name="activity_start_timer">Start timer</string>
+    <string name="timer_back_dialog_msg">Pressing back will result in all progress lost. Continue?</string>
+    <string name="timer_continue">Continue</string>
+    <string name="timer_cancel">Cancel</string>
+    <string name="timer_finished_dialog">Routine finished! Click done to go back.</string>
 </resources>

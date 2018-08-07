@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 import me.kevinxchan.kevinxchan.stretchit.model.exercise.ExerciseAdapter;
 import me.kevinxchan.kevinxchan.stretchit.model.exercise.Exercise;
 import me.kevinxchan.kevinxchan.stretchit.model.ItemTouchCallback;
@@ -113,6 +114,7 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
     private void setToolbar(@NonNull String string) {
         Toolbar toolbar = findViewById(R.id.activity_add_exercises_toolbar);
         toolbar.setTitle(string);
+        setSupportActionBar(toolbar);
     }
 
     @Override
@@ -130,12 +132,19 @@ public class AddExercisesActivity extends AppCompatActivity implements View.OnCl
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.action_confirm_routine_finished:
-                // TODO: add all exercises to routine
-                Intent backtoMainIntent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(backtoMainIntent);
+            case R.id.action_start_timer:
+                Log.d(TAG, "starting timer activity");
+                List<Exercise> exercises = exerciseAdapter.getAllExercises();
+                if (exercises.size() == 0)
+                    Toast.makeText(this, "You need at least one exercise to start the timer.", Toast.LENGTH_LONG).show();
+                else {
+                    Intent timerIntent = new Intent(AddExercisesActivity.this, TimerActivity.class);
+                    timerIntent.putExtra("ROUTINE_ID", currRoutineId);
+                    timerIntent.putParcelableArrayListExtra("EXERCISES", (ArrayList<Exercise>) exercises);
+                    startActivity(timerIntent);
+                }
+                break;
         }
-
 
         return super.onOptionsItemSelected(item);
     }

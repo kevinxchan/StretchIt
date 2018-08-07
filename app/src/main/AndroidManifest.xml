@@ -28,13 +28,18 @@
         </activity>
         <activity
                 android:name=".AddExercisesActivity"
-                android:windowSoftInputMode="adjustPan"
+                android:theme="@style/AppTheme.NoActionBar"
+                android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity
+                android:name=".ExerciseActivity"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".ExerciseActivity"
-                  android:theme="@style/AppTheme.NoActionBar">
-        </activity>
         <activity android:name=".RoutineNameActivity">
+        </activity>
+        <activity
+                android:name=".TimerActivity"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

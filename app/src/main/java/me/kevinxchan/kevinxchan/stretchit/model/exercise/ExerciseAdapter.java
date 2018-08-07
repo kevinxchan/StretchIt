@@ -49,6 +49,10 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.ViewHo
         return exercises.get(position);
     }
 
+    public List<Exercise> getAllExercises() {
+        return exercises;
+    }
+
     public void setExerciseList(List<Exercise> exercises) {
         this.exercises = exercises;
         notifyDataSetChanged();
