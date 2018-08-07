@@ -182,7 +182,7 @@ public class TimerActivity extends AppCompatActivity {
         if (currExerciseCounter == exercises.size()) {
             timerState = TimerState.Stopped;
             incrementTimesUsed(currRoutineId);
-            wrapUpActivity(); // TODO: finish implementing this
+            wrapUpActivity();
         } else {
             setNewTimerLength();
             materialProgressBar.setProgress(0);
@@ -200,10 +200,16 @@ public class TimerActivity extends AppCompatActivity {
 
     private void wrapUpActivity() {
         Log.d(TAG, "finished all exercises!");
-        // TODO: show the congratulatory activity
-//        Intent finishIntent = new Intent(TimerActivity.this, CongratulationsActivity.class);
-//        startActivity(finishIntent);
-        finish();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.timer_finished_dialog);
+        builder.setPositiveButton(R.string.done, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish();
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
     private void setNewTimerLength() {
