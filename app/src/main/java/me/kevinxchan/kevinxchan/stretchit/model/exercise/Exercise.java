@@ -44,6 +44,7 @@ public class Exercise implements Parcelable {
         name = in.readString();
         routineId = in.readInt();
         duration = in.readString();
+        category = Category.valueOf(in.readString().toUpperCase());
     }
 
     public static final Creator<Exercise> CREATOR = new Creator<Exercise>() {
@@ -109,5 +110,6 @@ public class Exercise implements Parcelable {
         parcel.writeString(name);
         parcel.writeInt(routineId);
         parcel.writeString(duration);
+        parcel.writeString(category == null ? null : category.toString());
     }
 }

@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import me.kevinxchan.kevinxchan.stretchit.model.Category;
 import me.kevinxchan.kevinxchan.stretchit.model.exercise.Exercise;
 import me.kevinxchan.kevinxchan.stretchit.util.PrefUtil;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
@@ -28,6 +29,7 @@ public class TimerActivity extends AppCompatActivity {
     private TimerState timerState;
     private CountDownTimer timer;
     private List<Exercise> exercises;
+    private int currExerciseCounter;
 
     private FloatingActionButton startFab;
     private FloatingActionButton pauseFab;
@@ -178,9 +180,35 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void setNewTimerLength() {
-        long lengthInMinutes = PrefUtil.getTimerLength(this);
-        timerLengthSeconds = lengthInMinutes * 60;
+//        long lengthInMinutes = PrefUtil.getTimerLength(this);
+//        timerLengthSeconds = lengthInMinutes * 60;
+        if (currExerciseCounter == exercises.size())
+            return;
+        Exercise next = exercises.get(currExerciseCounter);
+        currCategoryImageView.setImageResource(getCategoryImage(next));
+        currExerciseName.setText(next.getName());
+        timerLengthSeconds = strToSeconds(next.getDuration());
         materialProgressBar.setMax((int) timerLengthSeconds);
+        currExerciseCounter++;
+    }
+
+    private int getCategoryImage(Exercise exercise) {
+        Category current = exercise.getCategory();
+        int id;
+        switch (current) {
+            case COUNTDOWN:
+                id = R.drawable.ic_timer_black_24dp;
+                break;
+            case EXERCISE:
+                id = R.drawable.ic_exercise_black_24dp;
+                break;
+            case REST:
+                id = R.drawable.ic_rest_black_24dp;
+                break;
+            default:
+                throw new IllegalStateException("This should never be reached!");
+        }
+        return id;
     }
 
     private void setPreviousTimerLength() {
@@ -225,7 +253,8 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void initTimerValues() {
-        Exercise firstExercise = exercises.get(0);
+        currExerciseCounter = 0;
+        Exercise firstExercise = exercises.get(currExerciseCounter);
         timerLengthSeconds = strToSeconds(firstExercise.getDuration());
         Log.d(TAG, "timerLengthSeconds: " + timerLengthSeconds);
         timerState = TimerState.Stopped;
