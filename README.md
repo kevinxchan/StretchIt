@@ -59,4 +59,4 @@ A list of features to be implemented are kept under the Projects
 tab of this repository. The master branch will always be stable,
 and will be updated with features periodically.
 
-[cmd-build]: (https://developer.android.com/studio/build/building-cmdline)
+[cmd-build]: https://developer.android.com/studio/build/building-cmdline
