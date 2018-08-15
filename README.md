@@ -53,6 +53,8 @@ If running on Windows, replace all `./gradlew` with `gradlew`.
 See [here][cmd-build] for more information on app installation 
 from the command line.
 
+### Screenshots
+
 ### Development
 
 A list of features to be implemented are kept under the Projects
