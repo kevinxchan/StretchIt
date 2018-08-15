@@ -55,10 +55,10 @@ from the command line.
 
 ### Screenshots
 
-![alt-text](https://github.com/kevinxchan/RoutineMe/tree/screenshots/app/screenshots/routines_main.png)
-![alt-text](https://github.com/kevinxchan/RoutineMe/tree/screenshots/app/screenshots/manage_exercises.png)
-![alt-text](https://github.com/kevinxchan/RoutineMe/tree/screenshots/app/screenshots/add_exercise.png)
-![alt-text](https://github.com/kevinxchan/RoutineMe/tree/screenshots/app/screenshots/timer)
+![alt-text](app/screenshots/routines_main.png)<!-- .element height="10%" width="10%" -->
+![alt-text](app/screenshots/manage_exercises.png)
+![alt-text](app/screenshots/add_exercise.png)
+![alt-text](app/screenshots/timer.png)
 
 ### Development
 
