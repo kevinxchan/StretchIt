@@ -22,14 +22,17 @@ import java.util.List;
 
 public class TimerActivity extends AppCompatActivity {
     private static final String TAG = "TimerActivity";
+    private static final int COUNTDOWN_INTERVAL = 1;
+    private static final int UNIT_CONVERSION_FACTOR = 60;
+    private static final int MILLIFACTOR = 1000;
     private int currRoutineId;
     private RoutineViewModel routineViewModel;
     public enum TimerState {
         Stopped, Paused, Running
     }
 
-    private long timerLengthSeconds;
-    private long secondsRemaining;
+    private long timerLengthMilliseconds;
+    private long millisecondsRemaining;
     private TimerState timerState;
     private CountDownTimer timer;
     private List<Exercise> exercises;
@@ -78,8 +81,8 @@ public class TimerActivity extends AppCompatActivity {
 //        else if (timerState == TimerState.Paused) {
 //        }
 //
-//        PrefUtil.setPreviousTimerLengthSeconds(timerLengthSeconds, this);
-//        PrefUtil.setSecondsRemaining(secondsRemaining, this);
+//        PrefUtil.setPreviousTimerLengthSeconds(timerLengthMilliseconds, this);
+//        PrefUtil.setSecondsRemaining(millisecondsRemaining, this);
 //        PrefUtil.setTimerState(timerState, this);
 //    }
 
@@ -121,9 +124,9 @@ public class TimerActivity extends AppCompatActivity {
             setPreviousTimerLength();
 
         if (timerState == TimerState.Running || timerState == TimerState.Paused) {
-            secondsRemaining = PrefUtil.getSecondsRemaining(this);
+            millisecondsRemaining = PrefUtil.getMillisecondsRemaining(this);
         } else {
-            secondsRemaining = timerLengthSeconds;
+            millisecondsRemaining = timerLengthMilliseconds;
         }
 
         if (timerState == TimerState.Running)
@@ -164,7 +167,7 @@ public class TimerActivity extends AppCompatActivity {
     private void startTimer() {
         timerState = TimerState.Running;
 
-        timer = new CountDownTimer(secondsRemaining * 1000, 1000) {
+        timer = new CountDownTimer(millisecondsRemaining, COUNTDOWN_INTERVAL) {
             @Override
             public void onFinish() {
                 onTimerFinished();
@@ -172,7 +175,7 @@ public class TimerActivity extends AppCompatActivity {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                secondsRemaining = millisUntilFinished / 1000;
+                millisecondsRemaining = millisUntilFinished - COUNTDOWN_INTERVAL;
                 updateCountdownUI();
             }
         }.start();
@@ -186,8 +189,8 @@ public class TimerActivity extends AppCompatActivity {
         } else {
             setNewTimerLength();
             materialProgressBar.setProgress(0);
-//            PrefUtil.setSecondsRemaining(timerLengthSeconds, this);
-            secondsRemaining = timerLengthSeconds;
+//            PrefUtil.setSecondsRemaining(timerLengthMilliseconds, this);
+            millisecondsRemaining = timerLengthMilliseconds;
             updateButtons();
             updateCountdownUI();
             startTimer();
@@ -214,12 +217,12 @@ public class TimerActivity extends AppCompatActivity {
 
     private void setNewTimerLength() {
 //        long lengthInMinutes = PrefUtil.getTimerLength(this);
-//        timerLengthSeconds = lengthInMinutes * 60;
+//        timerLengthMilliseconds = lengthInMinutes * 60;
         Exercise next = exercises.get(currExerciseCounter);
         currCategoryImageView.setImageResource(getCategoryImage(next));
         currExerciseName.setText(next.getName());
-        timerLengthSeconds = strToSeconds(next.getDuration());
-        materialProgressBar.setMax((int) timerLengthSeconds);
+        timerLengthMilliseconds = strToMilliseconds(next.getDuration());
+        materialProgressBar.setMax((int) timerLengthMilliseconds);
         currExerciseCounter++;
     }
 
@@ -243,18 +246,18 @@ public class TimerActivity extends AppCompatActivity {
     }
 
     private void setPreviousTimerLength() {
-        timerLengthSeconds = PrefUtil.getPreviousTimerLengthSeconds(this);
-        materialProgressBar.setMax((int) timerLengthSeconds);
+        timerLengthMilliseconds = PrefUtil.getPreviousTimerLengthMilliseconds(this);
+        materialProgressBar.setMax((int) timerLengthMilliseconds);
     }
 
     private void updateCountdownUI() {
-        long minutesUntilFinished = secondsRemaining / 60;
-        long hoursUntilFinished = minutesUntilFinished / 60;
-        long secondsInMinuteUntilFinished = secondsRemaining - minutesUntilFinished * 60;
-        long minutesInHourUntilFinished = minutesUntilFinished - hoursUntilFinished * 60;
+        long minutesUntilFinished = (millisecondsRemaining / UNIT_CONVERSION_FACTOR) / MILLIFACTOR;
+        long hoursUntilFinished = (minutesUntilFinished / UNIT_CONVERSION_FACTOR);
+        long secondsInMinuteUntilFinished = (millisecondsRemaining - minutesUntilFinished * UNIT_CONVERSION_FACTOR * MILLIFACTOR) / MILLIFACTOR;
+        long minutesInHourUntilFinished = (minutesUntilFinished - hoursUntilFinished * UNIT_CONVERSION_FACTOR);
         String timeStr = formatNumber(hoursUntilFinished) + ":" + formatNumber(minutesInHourUntilFinished) + ":" + formatNumber(secondsInMinuteUntilFinished);
         countdownTextView.setText(timeStr);
-        materialProgressBar.setProgress((int) (timerLengthSeconds - secondsRemaining));
+        materialProgressBar.setProgress((int) (timerLengthMilliseconds - millisecondsRemaining));
     }
 
     private String formatNumber(long time) {
@@ -286,18 +289,19 @@ public class TimerActivity extends AppCompatActivity {
     private void initTimerValues() {
         currExerciseCounter = 0;
         Exercise firstExercise = exercises.get(currExerciseCounter);
-        timerLengthSeconds = strToSeconds(firstExercise.getDuration());
-        Log.d(TAG, "timerLengthSeconds: " + timerLengthSeconds);
+        timerLengthMilliseconds = strToMilliseconds(firstExercise.getDuration());
+        Log.d(TAG, "timerLengthMilliseconds: " + timerLengthMilliseconds);
         timerState = TimerState.Stopped;
-        secondsRemaining = 0;
+        millisecondsRemaining = 0;
     }
 
-    private long strToSeconds(String duration) {
+    private long strToMilliseconds(String duration) {
         String[] timeArr = duration.split(":");
         long hours = Long.parseLong(timeArr[0]);
         long minutes = Long.parseLong(timeArr[1]);
         long seconds = Long.parseLong(timeArr[2]);
-        return hours * 60 * 60 + minutes * 60 + seconds;
+        return hours * UNIT_CONVERSION_FACTOR * UNIT_CONVERSION_FACTOR * MILLIFACTOR +
+                minutes * UNIT_CONVERSION_FACTOR * MILLIFACTOR + seconds * MILLIFACTOR;
     }
 
     private void setToolbar(@NonNull String string) {
