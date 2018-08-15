@@ -55,7 +55,7 @@ from the command line.
 
 ### Screenshots
 
-![alt-text](app/screenshots/routines_main.png)<!-- .element height="10%" width="10%" -->
+![alt-text](app/screenshots/routine_main_resize.png)
 ![alt-text](app/screenshots/manage_exercises.png)
 ![alt-text](app/screenshots/add_exercise.png)
 ![alt-text](app/screenshots/timer.png)
