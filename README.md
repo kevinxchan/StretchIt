@@ -55,6 +55,11 @@ from the command line.
 
 ### Screenshots
 
+![alt-text](https://github.com/kevinxchan/RoutineMe/tree/screenshots/app/screenshots/routines_main.png)
+![alt-text](https://github.com/kevinxchan/RoutineMe/tree/screenshots/app/screenshots/manage_exercises.png)
+![alt-text](https://github.com/kevinxchan/RoutineMe/tree/screenshots/app/screenshots/add_exercise.png)
+![alt-text](https://github.com/kevinxchan/RoutineMe/tree/screenshots/app/screenshots/timer)
+
 ### Development
 
 A list of features to be implemented are kept under the Projects
