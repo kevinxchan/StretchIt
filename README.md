@@ -55,9 +55,9 @@ from the command line.
 
 ### Screenshots
 
-![alt-text](app/screenshots/routine_main_resize.png)
-![alt-text](app/screenshots/manage_exercises.png)
-![alt-text](app/screenshots/add_exercise.png)
+![alt-text](app/screenshots/routines.png)
+![alt-text](app/screenshots/exercises.png)
+![alt-text](app/screenshots/add_exercises.png)
 ![alt-text](app/screenshots/timer.png)
 
 ### Development
