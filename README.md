@@ -55,10 +55,7 @@ from the command line.
 
 ### Screenshots
 
-![alt-text](app/screenshots/routines.png)
-![alt-text](app/screenshots/exercises.png)
-![alt-text](app/screenshots/add_exercises.png)
-![alt-text](app/screenshots/timer.png)
+![](app/screenshots/all_screens.png)
 
 ### Development
 
